@@ -1,18 +1,21 @@
-<x-layouts.site :title="__('Abordagem')" :description="__('O que é comunicação regenerativa e como a praticamos: princípios vindos da agricultura regenerativa aplicados à comunicação, ao design e à tecnologia.')">
+<x-layouts.site :title="__('Abordagem')" :description="__('O nosso manifesto: comunicação regenerativa que multiplica o que há de bom no mundo, com profundidade em vez de alcance, consentimento e criatividade humana.')">
     <x-site.page-hero
         :eyebrow="__('Abordagem · Manifesto')"
         :title="__('A comunicação também pode regenerar')"
-        :intro="__('Boa parte da comunicação trabalha como a agricultura industrial: extrai o máximo no menor tempo e deixa o terreno exausto. Acreditamos noutra forma de fazer.')" />
+        :intro="__('Não se constrói um mundo regenerativo com comunicação extrativa. A forma como comunicamos tem de encarnar o mundo que queremos ver.')" />
 
     {{-- Manifesto statement --}}
     <section class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-28">
         <p class="reveal font-display text-2xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
-            {{ __('Chamamos-lhe comunicação regenerativa:') }}
-            <span class="italic text-clay-600">{{ __('comunicar de modo a devolver mais do que se recebe') }}</span>
-            {{ __('— às pessoas, às comunidades e aos ecossistemas que tocamos.') }}
+            {{ __('Existimos para') }}
+            <span class="italic text-clay-600">{{ __('multiplicar o que já há de bom no mundo') }}</span>
+            {{ __('— e amplificá-lo sem esgotar ninguém.') }}
         </p>
         <p class="reveal mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-soil-600">
-            {{ __('Pegámos nos princípios da agricultura regenerativa — solo vivo, biodiversidade, ciclos, reciprocidade — e trouxemo-los para a comunicação, o design e a tecnologia. Não como metáfora bonita, mas como método de trabalho.') }}
+            {{ __('Há organizações a fazer um trabalho que muda o mundo, mas cuja mensagem não chega a quem devia. O nosso trabalho é torná-la mais alta — com profundidade, consentimento e cuidado — para que as boas ideias enraízem e levantem voo.') }}
+        </p>
+        <p class="reveal mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-soil-600">
+            {{ __('Recusamos a agressividade, a manipulação e o ruído. O método tem de ser igual ao destino: regenerativo do princípio ao fim.') }}
         </p>
     </section>
 
@@ -28,12 +31,12 @@
 
             @php
                 $contrast = [
-                    ['from' => __('Captar atenção a qualquer custo'),        'to' => __('Cultivar atenção com respeito')],
-                    ['from' => __('Falar para consumidores'),               'to' => __('Conversar com comunidades')],
-                    ['from' => __('Picos de campanha e silêncio'),          'to' => __('Presença consistente, no tempo certo')],
-                    ['from' => __('Métricas de vaidade'),                    'to' => __('Indicadores de relação e impacto')],
-                    ['from' => __('Promessas maiores do que a realidade'),  'to' => __('Transparência sobre o que é real')],
-                    ['from' => __('Descartável e em série'),                 'to' => __('Durável e feito à medida')],
+                    ['from' => __('Captar atenção a qualquer custo'),  'to' => __('Profundidade em vez de alcance')],
+                    ['from' => __('Inundar de mensagens'),             'to' => __('Menos mensagens, mais profundas')],
+                    ['from' => __('Otimizar para conversões'),         'to' => __('Conversões com sentido')],
+                    ['from' => __('Intrusão sem permissão'),           'to' => __('Consentimento e escuta')],
+                    ['from' => __('Esconder a mensagem no ruído'),     'to' => __('A mensagem em primeiro lugar')],
+                    ['from' => __('Substituir pessoas por IA'),        'to' => __('Criatividade humana à frente')],
                 ];
             @endphp
             <div class="mt-12 grid gap-px overflow-hidden rounded-2xl bg-soil-700/40 sm:grid-cols-2">
@@ -63,7 +66,7 @@
         </div>
     </section>
 
-    {{-- Principles in depth --}}
+    {{-- Principles in depth (the pillars) --}}
     <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div class="max-w-2xl">
             <x-ui.eyebrow>{{ __('Os nossos princípios') }}</x-ui.eyebrow>
@@ -72,12 +75,12 @@
 
         @php
             $principles = [
-                ['n' => '01', 'title' => __('Começar pelo solo'),     'text' => __('Antes de qualquer campanha, escutamos. Estudamos o público, o contexto e o propósito — porque nada saudável cresce em terreno que não se conhece.')],
-                ['n' => '02', 'title' => __('Devolver mais do que se recebe'), 'text' => __('Medimos o sucesso pelo que deixamos para trás: mais confiança, mais relação, mais literacia. Comunicação que enriquece o terreno comum.')],
-                ['n' => '03', 'title' => __('Trabalhar com as estações'), 'text' => __('Cada projeto tem o seu tempo. Preferimos crescimento saudável e duradouro a picos artificiais que esgotam pessoas e públicos.')],
-                ['n' => '04', 'title' => __('Diversidade gera resiliência'), 'text' => __('Misturamos disciplinas, vozes e formatos. Como na natureza, a policultura é mais forte e mais bela do que a monocultura.')],
-                ['n' => '05', 'title' => __('Transparência radical'),  'text' => __('Comunicamos o que é real e recusamos o greenwashing. A confiança é o húmus de qualquer relação que dure.')],
-                ['n' => '06', 'title' => __('Tecnologia a favor da vida'), 'text' => __('Abraçamos novas ferramentas, IA incluída, com uma só pergunta: isto serve as pessoas e os ecossistemas? Se não servir, não entra.')],
+                ['n' => '01', 'title' => __('Profundidade acima do alcance'),  'text' => __('Chegar a menos pessoas, mas fundo. Uma relação verdadeira vale mais do que milhares de impressões que ninguém retém. É o princípio que mais defendemos.')],
+                ['n' => '02', 'title' => __('Regenerar é mais eficaz'),         'text' => __('Largar a agressividade não é abdicar de resultados. Comunicação honesta gera mais ação real — e conversões com sentido — do que a manipulação.')],
+                ['n' => '03', 'title' => __('Criatividade humana primeiro'),    'text' => __('Num mundo a achatar-se na repetição da IA, trazemos artistas e originalidade para a frente. A IA liberta tempo; as pessoas trazem a alma.')],
+                ['n' => '04', 'title' => __('Consentimento, nunca intrusão'),   'text' => __('Comunicamos com permissão e escuta. Protegemos a relação das pessoas com os media, em vez de a desgastar.')],
+                ['n' => '05', 'title' => __('Multiplicar o bem'),               'text' => __('Não inventamos o bem — encontramo-lo em quem já o faz e amplificamo-lo. Tornamos o bem mais alto e levamo-lo mais longe.')],
+                ['n' => '06', 'title' => __('Tecnologia ao serviço da vida'),   'text' => __('Abraçamos novas ferramentas, IA incluída, com uma só pergunta: isto serve as pessoas e o planeta? Se não servir, não entra.')],
             ];
         @endphp
 
@@ -99,7 +102,7 @@
         <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
             <x-brand.mark class="mx-auto h-14 w-auto text-moss-600" />
             <blockquote class="mt-8 font-display text-3xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
-                {{ __('“Deixar o terreno mais fértil do que o encontrámos.” É esta a única métrica que nunca negociamos.') }}
+                {{ __('Tornamos o bem mais alto — e levamo-lo mais fundo. É este o trabalho.') }}
             </blockquote>
         </div>
     </section>

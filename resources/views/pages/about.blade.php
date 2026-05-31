@@ -46,7 +46,7 @@
             <div class="mt-7 space-y-6 text-pretty text-lg leading-relaxed text-soil-700">
                 <p>{{ __('Vimos demasiados projetos extraordinários — quintas regenerativas, cooperativas, movimentos, organizações de impacto — a fazer um trabalho que muda o mundo e a ficarem invisíveis por falta de meios para o comunicar.') }}</p>
                 <p>{{ __('Ao mesmo tempo, vimos uma indústria da comunicação a funcionar como uma máquina extrativa: a esgotar a atenção, a inflacionar promessas e a deixar pessoas e equipas exaustas.') }}</p>
-                <p>{{ __('A asfouri existe para juntar as duas pontas: pôr a melhor estratégia, o melhor design e a melhor tecnologia ao serviço de quem regenera — e fazê-lo segundo os mesmos princípios que defendemos.') }}</p>
+                <p>{{ __('A asfouri existe para juntar as duas pontas — e para tornar o bem mais alto. Somos parceiros de comunicação de universidades, ONG, redes e projetos europeus, pondo a melhor estratégia, design e tecnologia ao serviço de quem regenera, sempre segundo os princípios que defendemos.') }}</p>
             </div>
         </div>
     </section>
@@ -85,7 +85,7 @@
         <div class="grain mx-auto max-w-5xl px-5 text-center sm:px-8">
             <h2 class="font-display text-3xl font-medium text-balance text-parchment sm:text-4xl">{{ __('Pequenos por opção, profundos por método') }}</h2>
             <p class="mx-auto mt-5 max-w-2xl text-pretty leading-relaxed text-soil-200">
-                {{ __('Somos um coletivo ágil que reúne estrategas, designers, ilustradores e programadores em torno de cada projeto. Sem estrutura pesada, sem intermediários — só as pessoas certas, próximas de si, do início ao fim.') }}
+                {{ __('Somos uma equipa-núcleo enxuta com uma rede de criativos, programadores e artistas que reunimos à medida de cada projeto. Sem estrutura pesada, sem intermediários — só as pessoas certas, próximas de si, do início ao fim.') }}
             </p>
             <div class="mt-9 flex flex-wrap justify-center gap-3">
                 <x-ui.button :href="route('services')" variant="light">{{ __('Ver serviços') }}</x-ui.button>

@@ -9,7 +9,7 @@
                     <span class="italic text-clay-600">{{ __('levanta voo') }}</span>.
                 </h1>
                 <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-soil-700">
-                    {{ __('A asfouri ajuda projetos regenerativos a contar a sua história — com estratégia, design, tecnologia e cuidado. Da terra ao ecrã, e de volta à terra.') }}
+                    {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar — com profundidade, consentimento e criatividade humana.') }}
                 </p>
                 <div class="mt-9 flex flex-wrap items-center gap-3">
                     <x-ui.button :href="route('services')" size="lg">{{ __('Ver o que fazemos') }}</x-ui.button>
@@ -78,10 +78,10 @@
     <section class="mx-auto max-w-5xl px-5 py-20 text-center sm:px-8 sm:py-28">
         <x-ui.eyebrow class="justify-center">{{ __('O que é comunicação regenerativa') }}</x-ui.eyebrow>
         <p class="reveal mx-auto mt-7 max-w-3xl font-display text-2xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
-            {{ __('Comunicar não é extrair atenção. É devolver mais do que se recebe — às pessoas, às comunidades e aos ecossistemas que tocamos.') }}
+            {{ __('Comunicar não é extrair atenção. É amplificar o que há de bom no mundo — com profundidade, e não com ruído.') }}
         </p>
         <p class="reveal mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-soil-600">
-            {{ __('Inspiramo-nos na agricultura regenerativa: começar pelo solo, trabalhar com os ciclos naturais, cultivar diversidade e deixar o terreno mais fértil do que o encontrámos. Aplicamos os mesmos princípios à comunicação, ao design e à tecnologia.') }}
+            {{ __('Não se constrói um mundo regenerativo com comunicação extrativa. Recusamos a agressividade e a manipulação: menos mensagens, mais profundas; consentimento em vez de intrusão; criatividade humana à frente. O método tem de ser igual ao destino.') }}
         </p>
         <div class="mt-9">
             <x-ui.button :href="route('approach')" variant="ghost">{{ __('Ler o manifesto') }} →</x-ui.button>
@@ -153,12 +153,12 @@
 
             @php
                 $principles = [
-                    ['n' => '01', 'title' => __('Começar pelo solo'),     'text' => __('Antes da campanha, a escuta. Entendemos o terreno — público, contexto e propósito — antes de plantar.')],
-                    ['n' => '02', 'title' => __('Devolver mais'),         'text' => __('Cada peça deve regenerar atenção, confiança e relação, em vez de a esgotar.')],
-                    ['n' => '03', 'title' => __('Trabalhar com as estações'), 'text' => __('Respeitamos o tempo certo de cada projeto. Crescimento saudável não tem atalhos.')],
-                    ['n' => '04', 'title' => __('Diversidade gera resiliência'), 'text' => __('Misturamos disciplinas, vozes e formatos. A monocultura empobrece; a policultura floresce.')],
-                    ['n' => '05', 'title' => __('Transparência radical'),  'text' => __('Comunicamos o que é real. Sem greenwashing, sem promessas que a terra não sustenta.')],
-                    ['n' => '06', 'title' => __('Tecnologia a favor da vida'), 'text' => __('Ferramentas — IA incluída — só fazem sentido se servirem pessoas e ecossistemas.')],
+                    ['n' => '01', 'title' => __('Profundidade acima do alcance'),  'text' => __('Chegar a menos pessoas, mas fundo. Vale mais uma relação verdadeira do que mil impressões esquecidas.')],
+                    ['n' => '02', 'title' => __('Regenerar é mais eficaz'),         'text' => __('Largar a agressividade gera mais ação real — e conversões com sentido — do que a manipulação.')],
+                    ['n' => '03', 'title' => __('Criatividade humana primeiro'),    'text' => __('Artistas e originalidade à frente, num mundo a achatar-se na repetição da IA.')],
+                    ['n' => '04', 'title' => __('Consentimento, nunca intrusão'),   'text' => __('Comunicamos com permissão e escuta, protegendo a relação das pessoas com os media.')],
+                    ['n' => '05', 'title' => __('Multiplicar o bem'),               'text' => __('Não inventamos o bem — encontramo-lo em quem já o faz e amplificamo-lo mais longe.')],
+                    ['n' => '06', 'title' => __('Tecnologia ao serviço da vida'),   'text' => __('IA incluída, com uma só pergunta: isto serve as pessoas e o planeta? Se não servir, não entra.')],
                 ];
             @endphp
 
@@ -216,7 +216,7 @@
                         {{ __('Quem semeia futuro') }}
                     </h2>
                     <p class="mt-5 max-w-md text-pretty leading-relaxed text-soil-600">
-                        {{ __('Trabalhamos com quem regenera — a terra, as pessoas, a cultura. Se o seu projeto deixa o mundo melhor do que o encontrou, falamos a mesma língua.') }}
+                        {{ __('Somos parceiros de comunicação de universidades, ONG, redes e projetos europeus — e de empresas que querem comunicar de outra forma. Se está a fazer algo bom no mundo, ajudamos a torná-lo mais alto.') }}
                     </p>
                     <div class="mt-8">
                         <x-ui.button :href="route('contact')">{{ __('Trabalhar connosco') }}</x-ui.button>
@@ -225,14 +225,14 @@
 
                 @php
                     $audiences = [
-                        __('Agricultura regenerativa e agroecologia'),
-                        __('Soberania alimentar e mercados locais'),
-                        __('Conservação da natureza e biodiversidade'),
-                        __('Energia, clima e transição justa'),
-                        __('Educação, cultura e ciência'),
-                        __('Economia social e cooperativas'),
-                        __('Comunidades e movimentos de base'),
-                        __('Empreendedorismo de impacto'),
+                        __('Projetos europeus (Horizonte, Erasmus+, Interreg, LIFE…)'),
+                        __('Universidades e centros de investigação'),
+                        __('ONG e redes de impacto'),
+                        __('Educação, cultura e cidadania'),
+                        __('Agricultura regenerativa e permacultura'),
+                        __('Sustentabilidade e ambiente'),
+                        __('Cooperativas e economia social'),
+                        __('Empresas com propósito'),
                     ];
                 @endphp
                 <ul class="grid gap-3 sm:grid-cols-2">
