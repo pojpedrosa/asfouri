@@ -1,0 +1,209 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ─────────────────────────────────────────────────────────────────────────
+   asfouri — regenerative communication
+   A warm, earthy design language: living soil, clay, moss, wheat and dawn.
+   Display: Fraunces (organic serif).  Body: Hanken Grotesk (humanist sans).
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+    --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+
+    /* Soil — deep earth, used for dark sections and primary text */
+    --color-soil-50: #f6f1e9;
+    --color-soil-100: #e9ddca;
+    --color-soil-200: #d2bd9c;
+    --color-soil-300: #b3936a;
+    --color-soil-400: #8f6c45;
+    --color-soil-500: #6f4f30;
+    --color-soil-600: #573c24;
+    --color-soil-700: #432d1b;
+    --color-soil-800: #2f2013;
+    --color-soil-900: #20160d;
+    --color-soil-950: #150e08;
+
+    /* Clay — terracotta, the warm accent / call-to-action */
+    --color-clay-50: #fbf0e9;
+    --color-clay-100: #f4d9c8;
+    --color-clay-200: #e8b496;
+    --color-clay-300: #db8c62;
+    --color-clay-400: #cf7048;
+    --color-clay-500: #c05a36;
+    --color-clay-600: #a4472a;
+    --color-clay-700: #843722;
+    --color-clay-800: #642a1c;
+    --color-clay-900: #4a2016;
+
+    /* Moss — living green, growth */
+    --color-moss-50: #f1f4ea;
+    --color-moss-100: #dde6c9;
+    --color-moss-200: #c1d09e;
+    --color-moss-300: #a2b673;
+    --color-moss-400: #859d54;
+    --color-moss-500: #6c8341;
+    --color-moss-600: #546735;
+    --color-moss-700: #42512c;
+    --color-moss-800: #344022;
+    --color-moss-900: #232c17;
+
+    /* Wheat — ochre / harvest gold */
+    --color-wheat-50: #fdf6e6;
+    --color-wheat-100: #f8e7bd;
+    --color-wheat-200: #f0cd83;
+    --color-wheat-300: #e6b454;
+    --color-wheat-400: #d99f35;
+    --color-wheat-500: #c0842a;
+    --color-wheat-600: #9c6722;
+
+    /* Dawn — soft sky / the bird, asfouri */
+    --color-dawn-100: #e3ecec;
+    --color-dawn-200: #c2d6d8;
+    --color-dawn-300: #97b8bc;
+    --color-dawn-400: #6f989e;
+    --color-dawn-500: #527b81;
+
+    /* Parchment — the page itself */
+    --color-parchment: #f5efe1;
+    --color-parchment-deep: #efe6d2;
+
+    --radius-blob: 42% 58% 63% 37% / 41% 44% 56% 59%;
+}
+
+@layer base {
+    :where(html) {
+        scroll-behavior: smooth;
+    }
+
+    :where(body) {
+        background-color: var(--color-parchment);
+        color: var(--color-soil-900);
+        font-feature-settings: 'ss01';
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Fraunces shines with a touch of optical softening */
+    h1, h2, h3, h4, .font-display {
+        font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
+        letter-spacing: -0.01em;
+    }
+
+    :where(a):focus-visible,
+    :where(button):focus-visible,
+    :where([role='button']):focus-visible,
+    :where(input):focus-visible,
+    :where(textarea):focus-visible,
+    :where(select):focus-visible {
+        outline: 2px solid var(--color-clay-500);
+        outline-offset: 3px;
+        border-radius: 0.25rem;
+    }
+
+    ::selection {
+        background: var(--color-wheat-200);
+        color: var(--color-soil-900);
+    }
+
+    .skip-link {
+        position: absolute;
+        left: 0.75rem;
+        top: -3.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--color-clay-500);
+        color: var(--color-parchment);
+        font-weight: 600;
+        border-radius: 0.6rem;
+        transition: top 150ms ease;
+        z-index: 100;
+    }
+    .skip-link:focus {
+        top: 0.75rem;
+    }
+}
+
+@layer utilities {
+    /* Subtle paper grain so flat colour never feels sterile */
+    .grain {
+        position: relative;
+    }
+    .grain::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.45;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+        z-index: 0;
+    }
+    .grain > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .text-balance {
+        text-wrap: balance;
+    }
+    .text-pretty {
+        text-wrap: pretty;
+    }
+
+    /* Organic blob mask for imagery / colour fields */
+    .blob {
+        border-radius: var(--radius-blob);
+    }
+
+    /* A hand-drawn underline that grows on reveal */
+    .ink-underline {
+        background-image: linear-gradient(transparent 62%, var(--color-wheat-200) 62%);
+        background-size: 100% 100%;
+    }
+
+    /* Section dividers shaped like a soil horizon */
+    .horizon-top {
+        clip-path: polygon(0 12%, 8% 8%, 22% 14%, 38% 6%, 55% 13%, 72% 5%, 88% 12%, 100% 7%, 100% 100%, 0 100%);
+    }
+
+    /* Reveal-on-scroll */
+    .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+
+    /* Slow drift for the bird / seed motifs */
+    @keyframes drift {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(2deg); }
+    }
+    .animate-drift {
+        animation: drift 7s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .animate-drift { animation: none; }
+    }
+
+    /* A growing-vine stroke animation for SVG roots */
+    @keyframes grow-stroke {
+        to { stroke-dashoffset: 0; }
+    }
+}
