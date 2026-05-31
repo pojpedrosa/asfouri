@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\InboundEmails\Pages;
 
 use App\Filament\Resources\InboundEmails\InboundEmailResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListInboundEmails extends ListRecords
@@ -12,8 +11,7 @@ class ListInboundEmails extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            CreateAction::make(),
-        ];
+        // Inbox is read-only — mail arrives via Postfix, never created by hand.
+        return [];
     }
 }
