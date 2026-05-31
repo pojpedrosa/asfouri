@@ -71,7 +71,7 @@
             @foreach ($values as $v)
                 <div class="reveal rounded-2xl border border-soil-100 bg-parchment p-7">
                     <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-clay-100 text-clay-600">
-                        <x-icon :name="$v['icon']" class="h-6 w-6" />
+                        <x-ui.icon :name="$v['icon']" class="h-6 w-6" />
                     </span>
                     <h3 class="mt-5 font-display text-xl text-soil-900">{{ $v['title'] }}</h3>
                     <p class="mt-2 text-sm leading-relaxed text-soil-600">{{ $v['text'] }}</p>

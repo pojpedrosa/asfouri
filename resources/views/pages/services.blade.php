@@ -131,7 +131,7 @@
                     <div class="reveal">
                         <div class="flex items-center gap-4">
                             <span class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-moss-100 text-moss-700">
-                                <x-icon :name="$s['icon']" class="h-7 w-7" />
+                                <x-ui.icon :name="$s['icon']" class="h-7 w-7" />
                             </span>
                             <span class="font-display text-2xl text-soil-300">{{ $s['num'] }}</span>
                         </div>
@@ -145,7 +145,7 @@
                             @foreach ($s['items'] as $item)
                                 <li class="flex items-start gap-3">
                                     <span class="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-clay-100 text-clay-600">
-                                        <x-icon name="check" class="h-3.5 w-3.5" />
+                                        <x-ui.icon name="check" class="h-3.5 w-3.5" />
                                     </span>
                                     <span class="text-sm leading-relaxed text-soil-700">{{ $item }}</span>
                                 </li>

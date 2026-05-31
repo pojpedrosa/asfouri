@@ -125,13 +125,13 @@
                            'sm:col-span-2 lg:col-span-1' => $i === 6,
                        ])>
                         <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-moss-100 text-moss-700 transition group-hover:bg-clay-100 group-hover:text-clay-600">
-                            <x-icon :name="$s['icon']" class="h-6 w-6" />
+                            <x-ui.icon :name="$s['icon']" class="h-6 w-6" />
                         </span>
                         <h3 class="mt-5 font-display text-xl font-medium text-soil-900">{{ $s['title'] }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-soil-600">{{ $s['text'] }}</p>
                         <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-clay-600">
                             {{ __('Saber mais') }}
-                            <x-icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                            <x-ui.icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                         </span>
                     </a>
                 @endforeach
@@ -196,7 +196,7 @@
             @foreach ($process as $i => $step)
                 <div class="reveal relative rounded-2xl bg-moss-50 p-7">
                     <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-moss-600 text-parchment">
-                        <x-icon :name="$step['icon']" class="h-6 w-6" />
+                        <x-ui.icon :name="$step['icon']" class="h-6 w-6" />
                     </span>
                     <p class="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-moss-700">{{ sprintf('%02d', $i + 1) }}</p>
                     <h3 class="mt-1 font-display text-2xl text-soil-900">{{ $step['step'] }}</h3>
@@ -239,7 +239,7 @@
                     @foreach ($audiences as $a)
                         <li class="reveal flex items-start gap-3 rounded-xl bg-parchment px-5 py-4 ring-1 ring-soil-100">
                             <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-moss-100 text-moss-700">
-                                <x-icon name="leaf" class="h-4 w-4" />
+                                <x-ui.icon name="leaf" class="h-4 w-4" />
                             </span>
                             <span class="text-sm font-medium text-soil-800">{{ $a }}</span>
                         </li>

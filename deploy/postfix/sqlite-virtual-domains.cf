@@ -1,0 +1,4 @@
+# Postfix → which domains we accept mail for (read live from the asfouri DB).
+# Install at /etc/postfix/sqlite-virtual-domains.cf
+dbpath = /var/www/asfouri-prod/database/database.sqlite
+query = SELECT DISTINCT domain FROM mail_addresses WHERE domain = '%s' AND enabled = 1 LIMIT 1

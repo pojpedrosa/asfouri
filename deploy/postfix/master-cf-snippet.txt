@@ -1,0 +1,5 @@
+# Append to /etc/postfix/master.cf — pipes inbound mail destined for the
+# internal inbox into the Laravel app. Runs as deploy so it can write the SQLite DB.
+
+asfouri-inbox unix - n n - 1 pipe
+  flags=DRhu user=deploy argv=/usr/bin/php /var/www/asfouri-prod/artisan mail:store --recipient=${original_recipient} --sender=${sender}

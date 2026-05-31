@@ -53,7 +53,7 @@
                         @foreach ($contrast as $c)
                             <li class="flex items-start gap-3 text-sm text-parchment">
                                 <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-moss-500/30 text-moss-200">
-                                    <x-icon name="check" class="h-3 w-3" />
+                                    <x-ui.icon name="check" class="h-3 w-3" />
                                 </span>{{ $c['to'] }}
                             </li>
                         @endforeach

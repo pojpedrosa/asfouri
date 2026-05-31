@@ -1,0 +1,8 @@
+# Postfix → where each address delivers (read live from the asfouri DB).
+# For every enabled address this returns a comma-separated recipient list:
+#   - the external forward_to destinations (if any), and/or
+#   - a local capture address  <local>@inbox.asfouri.local  (when deliver_to_inbox = 1),
+#     which the asfouri-inbox transport pipes into `php artisan mail:store`.
+# Install at /etc/postfix/sqlite-virtual-aliases.cf
+dbpath = /var/www/asfouri-prod/database/database.sqlite
+query = SELECT trim(coalesce(nullif(forward_to, ''), '') || CASE WHEN deliver_to_inbox = 1 THEN (CASE WHEN forward_to IS NOT NULL AND forward_to <> '' THEN ',' ELSE '' END) || '%u@inbox.asfouri.local' ELSE '' END, ', ') FROM mail_addresses WHERE local_part = '%u' AND domain = '%d' AND enabled = 1

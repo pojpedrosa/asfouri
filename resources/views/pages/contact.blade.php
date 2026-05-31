@@ -11,7 +11,7 @@
                 @if (session('contact_sent'))
                     <div class="rounded-2xl border border-moss-300 bg-moss-50 p-8 text-center" role="status">
                         <span class="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-moss-600 text-parchment">
-                            <x-icon name="check" class="h-7 w-7" />
+                            <x-ui.icon name="check" class="h-7 w-7" />
                         </span>
                         <h2 class="mt-5 font-display text-2xl text-soil-900">{{ __('Mensagem semeada!') }}</h2>
                         <p class="mt-2 text-soil-600">{{ __('Obrigado pelo seu contacto. Respondemos dentro de poucos dias úteis.') }}</p>
