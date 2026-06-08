@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
             ->brandName('asfouri')
             ->colors([
                 'primary' => Color::hex('#c05a36'), // clay
