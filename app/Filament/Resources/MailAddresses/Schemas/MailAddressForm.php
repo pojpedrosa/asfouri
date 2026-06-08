@@ -30,12 +30,23 @@ class MailAddressForm
                         ->required()
                         ->maxLength(255),
                     Select::make('mail_account_id')
-                        ->label('Conta')
+                        ->label('Conta / titular')
                         ->relationship('account', 'name')
                         ->searchable()
                         ->preload()
                         ->columnSpanFull()
-                        ->helperText('A quem pertence este endereço (opcional).'),
+                        ->helperText('A quem pertence este endereço. Uma conta agrupa um ou mais endereços de uma pessoa — não dá qualquer acesso ao back office. Deixe vazio, escolha uma conta existente, ou crie uma nova aqui.')
+                        ->createOptionForm([
+                            TextInput::make('name')
+                                ->label('Nome da conta')
+                                ->required()
+                                ->maxLength(120)
+                                ->helperText('Ex.: o seu nome, ou o nome da pessoa/equipa.'),
+                            TextInput::make('forward_to')
+                                ->label('Reencaminhamento padrão (opcional)')
+                                ->maxLength(255),
+                        ])
+                        ->createOptionAction(fn ($action) => $action->modalHeading('Nova conta')->modalSubmitActionLabel('Criar conta')),
                 ]),
 
             Section::make('Entrega')
