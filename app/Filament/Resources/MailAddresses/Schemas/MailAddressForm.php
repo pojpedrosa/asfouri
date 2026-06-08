@@ -49,14 +49,13 @@ class MailAddressForm
                         ->hiddenOn('edit')
                         ->visible(fn (Get $get) => (bool) $get('has_login')),
                     TextInput::make('account_password')
-                        ->label('Palavra-passe')
+                        ->label('Palavra-passe (opcional)')
                         ->password()
                         ->revealable()
                         ->maxLength(255)
-                        ->required(fn (Get $get) => (bool) $get('has_login'))
                         ->hiddenOn('edit')
                         ->visible(fn (Get $get) => (bool) $get('has_login'))
-                        ->helperText('A pessoa entra em /admin com o endereço acima e esta palavra-passe. Vê apenas a sua caixa.'),
+                        ->helperText('Opcional. Se vazio, a pessoa entra por link mágico ou recuperação de palavra-passe. Vê apenas a sua caixa.'),
 
                     // --- Alias (delivers to an existing inbox) ---
                     Select::make('user_id')

@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
+            ->renderHook('panels::auth.login.form.after', fn () => view('auth.magic-link-button'))
             ->brandName('asfouri')
             ->colors([
                 'primary' => Color::hex('#c05a36'), // clay
