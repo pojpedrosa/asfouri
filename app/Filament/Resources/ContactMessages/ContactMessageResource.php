@@ -33,6 +33,11 @@ class ContactMessageResource extends Resource
         return false;
     }
 
+    public static function canViewAny(): bool
+    {
+        return (bool) auth()->user()?->isAdmin();
+    }
+
     public static function getNavigationBadge(): ?string
     {
         $count = static::getModel()::where('handled', false)->count();

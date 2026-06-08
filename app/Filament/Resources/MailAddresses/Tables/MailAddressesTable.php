@@ -24,21 +24,25 @@ class MailAddressesTable
                     ->copyable()
                     ->searchable(['local_part', 'domain'])
                     ->sortable(['local_part']),
-                TextColumn::make('account.name')
-                    ->label('Conta')
+                TextColumn::make('type')
+                    ->label('Tipo')
+                    ->badge()
+                    ->state(fn (MailAddress $r) => $r->user && strtolower($r->user->email) === strtolower($r->local_part.'@'.$r->domain) ? 'Conta' : 'Alias')
+                    ->color(fn (string $state) => $state === 'Conta' ? 'primary' : 'gray'),
+                TextColumn::make('user.name')
+                    ->label('Caixa de')
+                    ->description(fn (MailAddress $r) => $r->user?->email)
                     ->placeholder('—')
                     ->searchable()
-                    ->toggleable(),
+                    ->sortable(),
                 TextColumn::make('forward_to')
-                    ->label('Reencaminha para')
+                    ->label('Reencaminha também')
                     ->placeholder('—')
                     ->html()
                     ->formatStateUsing(fn (?string $state) => $state
                         ? collect(explode(',', $state))->map(fn ($e) => e(trim($e)))->filter()->implode('<br>')
-                        : '—'),
-                IconColumn::make('deliver_to_inbox')
-                    ->label('Caixa de entrada')
-                    ->boolean(),
+                        : '—')
+                    ->toggleable(),
                 IconColumn::make('enabled')
                     ->label('Activo')
                     ->boolean(),

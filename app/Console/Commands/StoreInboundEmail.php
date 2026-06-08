@@ -66,8 +66,15 @@ class StoreInboundEmail extends Command
                 || ($address && blank($address->forward_to));
 
             if ($shouldStore) {
+                // Deliver into the owning user's inbox; if the address has no
+                // owner (or is unknown), fall back to the first admin.
+                $ownerId = $address?->user_id
+                    ?? \App\Models\User::where('is_admin', true)->value('id')
+                    ?? \App\Models\User::value('id');
+
                 InboundEmail::create([
                     'mail_address_id' => $address?->id,
+                    'user_id' => $ownerId,
                     'message_id' => optional($message->getHeader('Message-ID'))->getValue(),
                     'recipient' => $recipient,
                     'from_email' => $fromEmail,

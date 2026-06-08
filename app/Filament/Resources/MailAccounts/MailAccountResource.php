@@ -30,6 +30,18 @@ class MailAccountResource extends Resource
 
     protected static ?int $navigationSort = 10;
 
+    // Superseded by per-user logins (an "account" is now a back-office user).
+    // Hidden from the panel; kept only so existing data/migrations don't break.
+    public static function canViewAny(): bool
+    {
+        return false;
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return MailAccountForm::configure($schema);
@@ -42,9 +54,7 @@ class MailAccountResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            RelationManagers\AddressesRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

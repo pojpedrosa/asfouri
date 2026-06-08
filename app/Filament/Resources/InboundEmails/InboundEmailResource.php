@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class InboundEmailResource extends Resource
 {
@@ -44,9 +45,15 @@ class InboundEmailResource extends Resource
         return false;
     }
 
+    /** Each user sees only their own inbox. */
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('user_id', auth()->id());
+    }
+
     public static function getNavigationBadge(): ?string
     {
-        $count = static::getModel()::where('is_read', false)->count();
+        $count = static::getModel()::where('user_id', auth()->id())->where('is_read', false)->count();
 
         return $count > 0 ? (string) $count : null;
     }

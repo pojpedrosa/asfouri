@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MailAddresses\Schemas;
 
+use App\Models\User;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -22,65 +23,74 @@ class MailAddressForm
                         ->required()
                         ->maxLength(64)
                         ->regex('/^[a-z0-9._-]+$/i')
-                        ->helperText('Sem @. Ex.: hello, ana, geral')
+                        ->helperText('Sem @. Ex.: hello, imatos, geral')
                         ->dehydrateStateUsing(fn ($state) => strtolower(trim((string) $state))),
                     TextInput::make('domain')
                         ->label('Domínio')
                         ->default('asfouri.media')
                         ->required()
                         ->maxLength(255),
-                    Select::make('mail_account_id')
-                        ->label('Conta / titular')
-                        ->relationship('account', 'name')
-                        ->searchable()
-                        ->preload()
-                        ->columnSpanFull()
-                        ->helperText('A quem pertence este endereço. Uma conta agrupa um ou mais endereços de uma pessoa — não dá qualquer acesso ao back office. Deixe vazio, escolha uma conta existente, ou crie uma nova aqui.')
-                        ->createOptionForm([
-                            TextInput::make('name')
-                                ->label('Nome da conta')
-                                ->required()
-                                ->maxLength(120)
-                                ->helperText('Ex.: o seu nome, ou o nome da pessoa/equipa.'),
-                            TextInput::make('forward_to')
-                                ->label('Reencaminhamento padrão (opcional)')
-                                ->maxLength(255),
-                        ])
-                        ->createOptionAction(fn ($action) => $action->modalHeading('Nova conta')->modalSubmitActionLabel('Criar conta')),
                 ]),
 
-            Section::make('Entrega')
-                ->description('Cada endereço é livre: reencaminhar para fora, guardar na caixa de entrada do back office, ou ambos.')
+            Section::make('Tipo')
+                ->schema([
+                    Toggle::make('has_login')
+                        ->label('Conta com acesso ao back office')
+                        ->default(true)
+                        ->live()
+                        ->hiddenOn('edit')
+                        ->helperText('Ligado: a pessoa recebe um login próprio e a sua caixa de entrada. Desligado: é um alias que entrega numa caixa já existente (por omissão, a sua).'),
+
+                    // --- Account (creates a login) ---
+                    TextInput::make('account_name')
+                        ->label('Nome da pessoa')
+                        ->maxLength(120)
+                        ->required(fn (Get $get) => (bool) $get('has_login'))
+                        ->hiddenOn('edit')
+                        ->visible(fn (Get $get) => (bool) $get('has_login')),
+                    TextInput::make('account_password')
+                        ->label('Palavra-passe')
+                        ->password()
+                        ->revealable()
+                        ->maxLength(255)
+                        ->required(fn (Get $get) => (bool) $get('has_login'))
+                        ->hiddenOn('edit')
+                        ->visible(fn (Get $get) => (bool) $get('has_login'))
+                        ->helperText('A pessoa entra em /admin com o endereço acima e esta palavra-passe. Vê apenas a sua caixa.'),
+
+                    // --- Alias (delivers to an existing inbox) ---
+                    Select::make('user_id')
+                        ->label(fn (string $operation) => $operation === 'edit' ? 'Caixa de destino' : 'Entregar na caixa de')
+                        ->options(fn () => User::orderBy('name')->get()->mapWithKeys(fn (User $u) => [$u->id => $u->name.' ('.$u->email.')']))
+                        ->default(fn () => auth()->id())
+                        ->searchable()
+                        ->native(false)
+                        ->required(fn (Get $get, string $operation) => $operation === 'edit' || ! $get('has_login'))
+                        ->visible(fn (Get $get, string $operation) => $operation === 'edit' || ! $get('has_login')),
+                ]),
+
+            Section::make('Opções')
                 ->columns(2)
                 ->schema([
                     TextInput::make('forward_to')
-                        ->label('Reencaminhar para')
+                        ->label('Reencaminhar também para (opcional)')
                         ->columnSpanFull()
                         ->maxLength(500)
-                        ->helperText('Um ou mais endereços externos, separados por vírgula. Vazio = não reencaminha.')
+                        ->helperText('Endereço(s) externo(s), separados por vírgula. Além da caixa, envia uma cópia para fora.')
                         ->rules([
-                            fn (Get $get) => function (string $attribute, $value, \Closure $fail) use ($get) {
-                                foreach (array_filter(array_map('trim', explode(',', (string) $value))) as $p) {
-                                    if (! filter_var($p, FILTER_VALIDATE_EMAIL)) {
-                                        $fail("Endereço inválido: {$p}");
-                                        return;
+                            function () {
+                                return function (string $attribute, $value, \Closure $fail) {
+                                    foreach (array_filter(array_map('trim', explode(',', (string) $value))) as $p) {
+                                        if (! filter_var($p, FILTER_VALIDATE_EMAIL)) {
+                                            $fail("Endereço inválido: {$p}");
+                                        }
                                     }
-                                }
-                                if (trim((string) $value) === '' && ! $get('deliver_to_inbox')) {
-                                    $fail('Escolha pelo menos um destino: reencaminhar e/ou guardar na caixa de entrada.');
-                                }
+                                };
                             },
                         ])
                         ->dehydrateStateUsing(fn ($state) => collect(explode(',', (string) $state))
                             ->map(fn ($s) => strtolower(trim($s)))->filter()->implode(', ') ?: null),
-                    Toggle::make('deliver_to_inbox')
-                        ->label('Guardar na caixa de entrada')
-                        ->default(true)
-                        ->helperText('Mostra os emails recebidos no back office.'),
-                    Toggle::make('enabled')
-                        ->label('Activo')
-                        ->default(true),
-                    TextInput::make('notes')->label('Notas')->maxLength(255)->columnSpanFull(),
+                    Toggle::make('enabled')->label('Activo')->default(true),
                 ]),
         ]);
     }

@@ -30,6 +30,11 @@ class MailAddressResource extends Resource
 
     protected static ?int $navigationSort = 20;
 
+    public static function canViewAny(): bool
+    {
+        return (bool) auth()->user()?->isAdmin();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return MailAddressForm::configure($schema);

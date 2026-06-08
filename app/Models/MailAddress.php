@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class MailAddress extends Model
 {
     protected $fillable = [
-        'mail_account_id', 'local_part', 'domain',
+        'user_id', 'mail_account_id', 'local_part', 'domain',
         'forward_to', 'deliver_to_inbox', 'enabled', 'notes',
     ];
 
@@ -17,6 +17,12 @@ class MailAddress extends Model
         'deliver_to_inbox' => 'boolean',
         'enabled' => 'boolean',
     ];
+
+    /** The back-office user whose inbox receives mail to this address. */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function account(): BelongsTo
     {

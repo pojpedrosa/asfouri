@@ -119,11 +119,12 @@ class ComposeEmail extends Page implements HasForms
         $this->form->fill(['from' => $state['from']]);
     }
 
-    /** Enabled asfouri addresses, as "email => label" for the From select. */
+    /** The current user's own enabled addresses, as "email => label". */
     protected static function fromOptions(): \Illuminate\Support\Collection
     {
         return MailAddress::query()
             ->where('enabled', true)
+            ->where('user_id', auth()->id())
             ->orderBy('local_part')
             ->get()
             ->mapWithKeys(fn (MailAddress $a) => [$a->local_part.'@'.$a->domain => $a->local_part.'@'.$a->domain]);

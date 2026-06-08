@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundEmail extends Model
 {
     protected $fillable = [
-        'mail_address_id', 'message_id', 'recipient', 'from_email', 'from_name',
+        'mail_address_id', 'user_id', 'message_id', 'recipient', 'from_email', 'from_name',
         'subject', 'body_text', 'body_html', 'raw', 'is_read', 'received_at',
     ];
 
@@ -20,5 +20,11 @@ class InboundEmail extends Model
     public function address(): BelongsTo
     {
         return $this->belongsTo(MailAddress::class, 'mail_address_id');
+    }
+
+    /** The back-office user whose inbox this email belongs to. */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
