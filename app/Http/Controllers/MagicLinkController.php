@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Support\MagicLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class MagicLinkController extends Controller
 {
@@ -26,10 +25,7 @@ class MagicLinkController extends Controller
         $user = User::whereRaw('lower(email) = ?', [strtolower($data['email'])])->first();
 
         if ($user) {
-            $token = Str::random(48);
-            // One-time, 30-minute token (the hash is what we store).
-            Cache::put('magic_login:'.hash('sha256', $token), $user->id, now()->addMinutes(30));
-            $url = route('magic.verify', ['token' => $token]);
+            $url = MagicLink::generate($user, minutes: 30);
 
             try {
                 Mail::html(
@@ -48,7 +44,7 @@ class MagicLinkController extends Controller
     /** Consume the token and log the user in. */
     public function verify(string $token, Request $request)
     {
-        $userId = Cache::pull('magic_login:'.hash('sha256', $token)); // single use
+        $userId = MagicLink::consume($token); // single use
         $user = $userId ? User::find($userId) : null;
 
         if (! $user) {
