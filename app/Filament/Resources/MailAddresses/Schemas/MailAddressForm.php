@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MailAddresses\Schemas;
 
+use App\Models\MailAddress;
 use App\Models\User;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,6 +13,13 @@ use Filament\Schemas\Schema;
 
 class MailAddressForm
 {
+    /** Is this address a login account (its user's email equals the address)? */
+    public static function isAccount(?MailAddress $record): bool
+    {
+        return $record && $record->user
+            && strtolower($record->user->email) === strtolower($record->local_part.'@'.$record->domain);
+    }
+
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
@@ -41,31 +49,32 @@ class MailAddressForm
                         ->hiddenOn('edit')
                         ->helperText('Ligado: a pessoa recebe um login próprio e a sua caixa de entrada. Desligado: é um alias que entrega numa caixa já existente (por omissão, a sua).'),
 
-                    // --- Account (creates a login) ---
+                    // --- Account profile (the person's login) — on create, or when editing an account ---
                     TextInput::make('account_name')
                         ->label('Nome da pessoa')
                         ->maxLength(120)
-                        ->required(fn (Get $get) => (bool) $get('has_login'))
-                        ->hiddenOn('edit')
-                        ->visible(fn (Get $get) => (bool) $get('has_login')),
+                        ->visible(fn (Get $get, ?MailAddress $record, string $operation) => $operation === 'create' ? (bool) $get('has_login') : static::isAccount($record))
+                        ->required(fn (Get $get, ?MailAddress $record, string $operation) => $operation === 'create' ? (bool) $get('has_login') : static::isAccount($record)),
                     TextInput::make('account_password')
-                        ->label('Palavra-passe (opcional)')
+                        ->label(fn (string $operation) => $operation === 'edit' ? 'Nova palavra-passe' : 'Palavra-passe (opcional)')
                         ->password()
                         ->revealable()
                         ->maxLength(255)
-                        ->hiddenOn('edit')
-                        ->visible(fn (Get $get) => (bool) $get('has_login'))
-                        ->helperText('Opcional. Se vazio, a pessoa entra por link mágico ou recuperação de palavra-passe. Vê apenas a sua caixa.'),
+                        ->autocomplete('new-password')
+                        ->visible(fn (Get $get, ?MailAddress $record, string $operation) => $operation === 'create' ? (bool) $get('has_login') : static::isAccount($record))
+                        ->helperText(fn (string $operation) => $operation === 'edit'
+                            ? 'Defina uma nova palavra-passe para esta pessoa. Deixe vazio para manter a atual.'
+                            : 'Opcional. Se vazio, a pessoa entra por link mágico ou recuperação de palavra-passe.'),
 
-                    // --- Alias (delivers to an existing inbox) ---
+                    // --- Alias destination (only for aliases) ---
                     Select::make('user_id')
-                        ->label(fn (string $operation) => $operation === 'edit' ? 'Caixa de destino' : 'Entregar na caixa de')
+                        ->label('Entregar na caixa de')
                         ->options(fn () => User::orderBy('name')->get()->mapWithKeys(fn (User $u) => [$u->id => $u->name.' ('.$u->email.')']))
                         ->default(fn () => auth()->id())
                         ->searchable()
                         ->native(false)
-                        ->required(fn (Get $get, string $operation) => $operation === 'edit' || ! $get('has_login'))
-                        ->visible(fn (Get $get, string $operation) => $operation === 'edit' || ! $get('has_login')),
+                        ->visible(fn (Get $get, ?MailAddress $record, string $operation) => $operation === 'create' ? ! (bool) $get('has_login') : ! static::isAccount($record))
+                        ->required(fn (Get $get, ?MailAddress $record, string $operation) => $operation === 'create' ? ! (bool) $get('has_login') : ! static::isAccount($record)),
                 ]),
 
             Section::make('Opções')
