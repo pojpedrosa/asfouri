@@ -47,8 +47,15 @@ class MailgunSender
         }
 
         $request = Http::withBasicAuth('api', $secret)->timeout(30);
-        foreach (array_values($files) as $i => $file) {
-            $request = $request->attach("attachment[$i]", $file['contents'], $file['name'] ?? ('anexo-'.($i + 1)));
+
+        if ($files) {
+            // Multipart (attach() also carries the $form fields).
+            foreach (array_values($files) as $i => $file) {
+                $request = $request->attach("attachment[$i]", $file['contents'], $file['name'] ?? ('anexo-'.($i + 1)));
+            }
+        } else {
+            // No files → must still be form-encoded (Mailgun rejects JSON bodies).
+            $request = $request->asForm();
         }
 
         $response = $request->post("https://{$endpoint}/v3/{$domain}/messages", $form);
