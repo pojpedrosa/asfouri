@@ -23,12 +23,18 @@ class InboundEmailsTable
     {
         return $table
             // One row per conversation: the most recent message of each thread.
-            ->modifyQueryUsing(fn (Builder $q) => $q
-                ->whereIn('id', InboundEmail::query()
+            // Materialize the per-thread MAX(id) into an array (not a sub-builder)
+            // so Filament's nested filter where() keeps the Eloquent model.
+            ->modifyQueryUsing(function (Builder $query) {
+                $ids = InboundEmail::query()
                     ->where('user_id', auth()->id())
                     ->selectRaw('MAX(id) as id')
-                    ->groupBy(DB::raw("COALESCE(thread_id, 'id-' || id)")))
-                ->orderByRaw('COALESCE(received_at, sent_at) desc'))
+                    ->groupBy(DB::raw("COALESCE(thread_id, 'id-' || id)"))
+                    ->pluck('id')
+                    ->all();
+
+                return $query->whereIn('id', $ids)->orderByRaw('COALESCE(received_at, sent_at) desc');
+            })
             ->columns([
                 IconColumn::make('is_read')
                     ->label('')
@@ -63,7 +69,7 @@ class InboundEmailsTable
                     ->label('Data')
                     ->state(fn (InboundEmail $r) => $r->received_at ?? $r->sent_at)
                     ->dateTime('d/m/Y H:i')
-                    ->sortable(query: fn (Builder $q, string $direction) => $q->orderByRaw('COALESCE(received_at, sent_at) '.$direction)),
+                    ->sortable(query: fn (Builder $query, string $direction) => $query->orderByRaw('COALESCE(received_at, sent_at) '.$direction)),
             ])
             ->filters([
                 TernaryFilter::make('is_read')->label('Lido'),
