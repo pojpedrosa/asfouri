@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\MagicLinkController;
+use App\Http\Controllers\MailAttachmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.home')->name('home');
@@ -28,3 +29,8 @@ Route::post('/magic-login', [MagicLinkController::class, 'send'])
 Route::get('/magic-login/{token}', [MagicLinkController::class, 'verify'])
     ->where('token', '[A-Za-z0-9]+')
     ->name('magic.verify');
+
+// Private email attachment download (auth + ownership checked in controller).
+Route::get('/mail/attachment/{attachment}', [MailAttachmentController::class, 'download'])
+    ->middleware('auth')
+    ->name('mail.attachment');

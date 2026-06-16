@@ -2,8 +2,12 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\InboundEmail;
 use App\Models\MailAddress;
+use App\Support\MailgunSender;
+use App\Support\MailThread;
 use BackedEnum;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -14,7 +18,7 @@ use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class ComposeEmail extends Page implements HasForms
 {
@@ -82,6 +86,18 @@ class ComposeEmail extends Page implements HasForms
                             ->label('Mensagem')
                             ->required()
                             ->columnSpanFull(),
+                        FileUpload::make('attachments')
+                            ->label('Anexos')
+                            ->multiple()
+                            ->disk('mail')
+                            ->directory('outbound/'.auth()->id())
+                            ->visibility('private')
+                            ->preventFilePathTampering()
+                            ->storeFileNamesIn('attachment_names')
+                            ->maxSize(25 * 1024)
+                            ->maxFiles(10)
+                            ->columnSpanFull()
+                            ->helperText('Até 25 MB por ficheiro.'),
                     ]),
             ])
             ->statePath('data');
@@ -94,29 +110,69 @@ class ComposeEmail extends Page implements HasForms
         $recipients = collect(explode(',', (string) $state['to']))
             ->map(fn ($s) => trim($s))->filter()->values()->all();
 
+        $fromAddress = $state['from'];
+        $bodyHtml = (string) $state['body'];
+
+        $address = MailAddress::where('user_id', auth()->id())->get()
+            ->first(fn (MailAddress $a) => strtolower($a->local_part.'@'.$a->domain) === strtolower((string) $fromAddress));
+
+        $paths = array_values(array_filter(
+            (array) ($state['attachments'] ?? []),
+            fn ($p) => is_string($p) && str_starts_with($p, 'outbound/'.auth()->id().'/'),
+        ));
+        $names = (array) ($state['attachment_names'] ?? []);
+        $files = [];
+        foreach ($paths as $p) {
+            if (Storage::disk('mail')->exists($p)) {
+                $files[] = ['contents' => Storage::disk('mail')->get($p), 'name' => $names[$p] ?? basename($p)];
+            }
+        }
+
         try {
-            Mail::html($state['body'], function ($message) use ($state, $recipients) {
-                $message->from($state['from'], 'asfouri')
-                    ->to($recipients)
-                    ->subject($state['subject']);
-            });
+            $messageId = MailgunSender::send(
+                ['from' => $fromAddress, 'to' => $recipients, 'subject' => $state['subject'], 'html' => $bodyHtml],
+                null,
+                $files,
+            );
         } catch (\Throwable $e) {
-            Notification::make()
-                ->danger()
-                ->title('Não foi possível enviar')
-                ->body($e->getMessage())
-                ->send();
+            Notification::make()->danger()->title('Não foi possível enviar')->body($e->getMessage())->send();
 
             return;
         }
 
-        Notification::make()
-            ->success()
-            ->title('Email enviado')
-            ->body('Para: '.implode(', ', $recipients))
-            ->send();
+        $out = InboundEmail::create([
+            'mail_address_id' => $address?->id,
+            'user_id' => auth()->id(),
+            'thread_id' => MailThread::resolve((int) auth()->id(), null, [], $state['subject'], $address?->id, $recipients[0] ?? null),
+            'direction' => 'outbound',
+            'message_id' => $messageId,
+            'recipient' => $fromAddress,
+            'to_recipients' => implode(', ', $recipients),
+            'from_email' => $fromAddress,
+            'from_name' => auth()->user()->name,
+            'subject' => $state['subject'],
+            'body_html' => $bodyHtml,
+            'body_text' => trim(strip_tags($bodyHtml)),
+            'has_attachments' => count($files) > 0,
+            'is_read' => true,
+            'sent_at' => now(),
+        ]);
 
-        $this->form->fill(['from' => $state['from']]);
+        foreach ($paths as $p) {
+            if (Storage::disk('mail')->exists($p)) {
+                $out->attachments()->create([
+                    'disk' => 'mail',
+                    'path' => $p,
+                    'filename' => $names[$p] ?? basename($p),
+                    'mime' => Storage::disk('mail')->mimeType($p) ?: null,
+                    'size' => Storage::disk('mail')->size($p),
+                ]);
+            }
+        }
+
+        Notification::make()->success()->title('Email enviado')->body('Para: '.implode(', ', $recipients))->send();
+
+        $this->form->fill(['from' => $fromAddress]);
     }
 
     /** The current user's own enabled addresses, as "email => label". */

@@ -4,11 +4,15 @@ namespace App\Console\Commands;
 
 use App\Models\InboundEmail;
 use App\Models\MailAddress;
+use App\Models\User;
+use App\Support\MailThread;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use ZBateson\MailMimeParser\MailMimeParser;
 
 #[Signature('mail:store {--recipient= : The asfouri.media address the mail was delivered to} {--sender= : Envelope sender}')]
@@ -23,6 +27,7 @@ class StoreInboundEmail extends Command
         $raw = stream_get_contents(STDIN, length: 25 * 1024 * 1024);
         if ($raw === false || $raw === '') {
             $this->error('No MIME input on stdin');
+
             return self::FAILURE;
         }
 
@@ -33,6 +38,18 @@ class StoreInboundEmail extends Command
             $hasFrom = $fromHeader && method_exists($fromHeader, 'getAddresses') && $fromHeader->getAddresses();
             $fromEmail = $hasFrom ? $fromHeader->getAddresses()[0]->getEmail() : ($envelopeSender ?: null);
             $fromName = $hasFrom ? ($fromHeader->getAddresses()[0]->getName() ?: null) : null;
+
+            // Threading headers (ids normalized: brackets stripped).
+            $messageId = MailThread::cleanId($message->getHeaderValue('Message-ID'));
+            $inReplyTo = MailThread::cleanId($message->getHeaderValue('In-Reply-To'));
+            $refsHeader = $message->getHeader('References');
+            $references = ($refsHeader && method_exists($refsHeader, 'getIds'))
+                ? array_values(array_filter(array_map([MailThread::class, 'cleanId'], $refsHeader->getIds())))
+                : [];
+            $toRecipients = trim(implode(', ', array_filter([
+                $message->getHeaderValue('To'),
+                $message->getHeaderValue('Cc'),
+            ]))) ?: null;
 
             // Strip any +tag and resolve the local address.
             $bare = preg_replace('/\+[^@]*@/', '@', $recipient);
@@ -65,39 +82,52 @@ class StoreInboundEmail extends Command
             $shouldStore = ! $address || $address->deliver_to_inbox || $forwardFailed
                 || ($address && blank($address->forward_to));
 
+            $stored = false;
             if ($shouldStore) {
-                // Deliver into the owning user's inbox; if the address has no
-                // owner (or is unknown), fall back to the first admin.
                 $ownerId = $address?->user_id
-                    ?? \App\Models\User::where('is_admin', true)->value('id')
-                    ?? \App\Models\User::value('id');
+                    ?? User::where('is_admin', true)->value('id')
+                    ?? User::value('id');
 
-                InboundEmail::create([
-                    'mail_address_id' => $address?->id,
-                    'user_id' => $ownerId,
-                    'message_id' => optional($message->getHeader('Message-ID'))->getValue(),
-                    'recipient' => $recipient,
-                    'from_email' => $fromEmail,
-                    'from_name' => $fromName,
-                    'subject' => $message->getHeaderValue('Subject'),
-                    'body_text' => $message->getTextContent(),
-                    'body_html' => $message->getHtmlContent(),
-                    'raw' => $raw,
-                    'received_at' => now(),
-                ]);
+                // Dedupe: same message already filed for this user.
+                $already = filled($messageId) && InboundEmail::where('user_id', $ownerId)
+                    ->where('message_id', $messageId)->exists();
+
+                if (! $already) {
+                    $email = InboundEmail::create([
+                        'mail_address_id' => $address?->id,
+                        'user_id' => $ownerId,
+                        'thread_id' => MailThread::resolve((int) $ownerId, $inReplyTo, $references, $message->getHeaderValue('Subject'), $address?->id, $fromEmail),
+                        'direction' => 'inbound',
+                        'message_id' => $messageId,
+                        'in_reply_to' => $inReplyTo,
+                        'email_references' => $references ? implode(' ', $references) : null,
+                        'recipient' => $recipient,
+                        'to_recipients' => $toRecipients,
+                        'from_email' => $fromEmail,
+                        'from_name' => $fromName,
+                        'subject' => $message->getHeaderValue('Subject'),
+                        'body_text' => $message->getTextContent(),
+                        'body_html' => $message->getHtmlContent(),
+                        'raw' => $raw,
+                        'received_at' => now(),
+                    ]);
+
+                    static::extractAttachments($email, $message);
+                    MailThread::linkDescendants($email);
+                    $stored = true;
+                }
             }
 
             $this->info(sprintf(
                 'Handled %s (stored=%s, forwarded=%s%s)',
                 $recipient,
-                $shouldStore ? 'yes' : 'no',
+                $stored ? 'yes' : 'no',
                 $forwarded ? 'yes' : 'no',
                 $forwardFailed ? ', forward FAILED' : '',
             ));
 
             return self::SUCCESS;
         } catch (\Throwable $e) {
-            // Never bounce the original mail because of an internal error — log and exit 0.
             try {
                 Log::error('mail:store failed', ['recipient' => $recipient, 'error' => $e->getMessage()]);
             } catch (\Throwable) {
@@ -106,6 +136,49 @@ class StoreInboundEmail extends Command
 
             return self::SUCCESS;
         }
+    }
+
+    /**
+     * Extract MIME attachments onto the private 'mail' disk and record them.
+     * Shared with the backfill command. Returns the count stored.
+     */
+    public static function extractAttachments(InboundEmail $email, $message): int
+    {
+        $count = 0;
+
+        foreach ($message->getAllAttachmentParts() as $i => $part) {
+            $original = $part->getFilename() ?: ('attachment-'.($i + 1));
+            $safe = preg_replace('/[^\w.\- ]+/u', '_', basename($original)) ?: ('attachment-'.($i + 1));
+            $safe = Str::limit($safe, 120, '');
+
+            $content = $part->getContent();
+            if ($content === null || $content === '') {
+                continue;
+            }
+
+            $path = $email->id.'/'.Str::random(8).'-'.$safe;
+            Storage::disk('mail')->put($path, $content);
+
+            $cid = $part->getContentId();
+
+            $email->attachments()->create([
+                'disk' => 'mail',
+                'path' => $path,
+                'filename' => $original,
+                'mime' => $part->getContentType(),
+                'size' => Storage::disk('mail')->size($path),
+                'content_id' => $cid ? trim($cid, '<>') : null,
+                'is_inline' => strtolower((string) $part->getContentDisposition()) === 'inline',
+            ]);
+
+            $count++;
+        }
+
+        if ($count > 0 && ! $email->has_attachments) {
+            $email->forceFill(['has_attachments' => true])->save();
+        }
+
+        return $count;
     }
 
     /**

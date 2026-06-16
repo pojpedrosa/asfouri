@@ -38,6 +38,17 @@ return [
             'report' => false,
         ],
 
+        // Private disk for email attachments (inbound + outbound). Not symlinked;
+        // reachable only via the auth + ownership-checked download route.
+        'mail' => [
+            'driver' => 'local',
+            'root' => storage_path('app/mail'),
+            'serve' => false, // reachable only via the auth-checked download route
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
