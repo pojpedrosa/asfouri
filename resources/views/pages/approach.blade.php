@@ -4,29 +4,38 @@
         :title="__('A comunicação também pode regenerar')"
         :intro="__('Não se constrói um mundo regenerativo com comunicação extrativa. A forma como comunicamos tem de encarnar o mundo que queremos ver.')" />
 
-    {{-- Manifesto statement --}}
-    <section class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-28">
-        <p class="reveal font-display text-2xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
-            {{ __('Existimos para') }}
-            <span class="italic text-clay-600">{{ __('multiplicar o que já há de bom no mundo') }}</span>
-            {{ __('— e amplificá-lo sem esgotar ninguém.') }}
-        </p>
-        <p class="reveal mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-soil-600">
-            {{ __('Há organizações a fazer um trabalho que muda o mundo, mas cuja mensagem não chega a quem devia. O nosso trabalho é torná-la mais alta — com profundidade, consentimento e cuidado — para que as boas ideias enraízem e levantem voo.') }}
-        </p>
-        <p class="reveal mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-soil-600">
-            {{ __('Recusamos a agressividade, a manipulação e o ruído. O método tem de ser igual ao destino: regenerativo do princípio ao fim.') }}
-        </p>
+    {{-- Manifesto statement — electric blue on cream --}}
+    <section class="relative overflow-hidden">
+        {{-- playful geometric punctuation --}}
+        <span class="pointer-events-none absolute -right-16 top-10 hidden h-64 w-64 rounded-full bg-sun/50 blur-0 sm:block" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute right-24 top-44 hidden h-10 w-10 rounded-full bg-coral sm:block" aria-hidden="true"></span>
+
+        <div class="relative mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-28">
+            <p class="reveal font-display text-3xl font-semibold leading-[1.1] tracking-tight text-balance text-blue-500 sm:text-5xl">
+                {{ __('Existimos para') }}
+                <span class="ink-underline box-decoration-clone">{{ __('multiplicar o que já há de bom no mundo') }}</span>
+                {{ __('— e amplificá-lo sem esgotar ninguém.') }}
+            </p>
+            <p class="reveal mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-ink/80">
+                {{ __('Há organizações a fazer um trabalho que muda o mundo, mas cuja mensagem não chega a quem devia. O nosso trabalho é torná-la mais alta — com profundidade, consentimento e cuidado — para que as boas ideias enraízem e levantem voo.') }}
+            </p>
+            <p class="reveal mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink/80">
+                {{ __('Recusamos a agressividade, a manipulação e o ruído. O método tem de ser igual ao destino: regenerativo do princípio ao fim.') }}
+            </p>
+        </div>
     </section>
 
-    {{-- Extractive vs Regenerative --}}
-    <section class="bg-soil-900 py-20 text-soil-100 sm:py-28">
-        <div class="grain mx-auto max-w-7xl px-5 sm:px-8">
+    {{-- Extractive vs Regenerative — bold blue section --}}
+    <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-28">
+        {{-- white sparrow as punctuation --}}
+        <x-brand.mark class="animate-drift pointer-events-none absolute -right-6 top-6 h-44 w-auto text-cream/10 sm:h-64" />
+
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
             <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-wheat-300">
-                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-wheat-400"></span>{{ __('Duas formas de comunicar') }}
+                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-sun">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-sun"></span>{{ __('Duas formas de comunicar') }}
                 </span>
-                <h2 class="mt-5 font-display text-4xl font-medium text-balance text-parchment sm:text-5xl">{{ __('Do extrativo ao regenerativo') }}</h2>
+                <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-paper sm:text-5xl">{{ __('Do extrativo ao regenerativo') }}</h2>
             </div>
 
             @php
@@ -39,23 +48,27 @@
                     ['from' => __('Substituir pessoas por IA'),        'to' => __('Criatividade humana à frente')],
                 ];
             @endphp
-            <div class="mt-12 grid gap-px overflow-hidden rounded-2xl bg-soil-700/40 sm:grid-cols-2">
-                <div class="bg-soil-800/60 p-7">
-                    <h3 class="font-display text-xl text-soil-200">{{ __('Comunicação extrativa') }}</h3>
-                    <ul class="mt-5 space-y-3">
+            <div class="mt-12 grid gap-5 sm:grid-cols-2">
+                {{-- Extractive --}}
+                <div class="rounded-3xl border border-cream/15 bg-blue-700/40 p-7 sm:p-8">
+                    <h3 class="font-display text-xl font-medium text-sky">{{ __('Comunicação extrativa') }}</h3>
+                    <ul class="mt-6 space-y-3.5">
                         @foreach ($contrast as $c)
-                            <li class="flex items-start gap-3 text-sm text-soil-300">
-                                <span class="mt-1 text-clay-300">—</span>{{ $c['from'] }}
+                            <li class="flex items-start gap-3 text-sm text-cream/70">
+                                <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cream/10 text-coral">
+                                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>
+                                </span>{{ $c['from'] }}
                             </li>
                         @endforeach
                     </ul>
                 </div>
-                <div class="bg-moss-800/40 p-7 ring-1 ring-moss-500/30">
-                    <h3 class="font-display text-xl text-wheat-200">{{ __('Comunicação regenerativa') }}</h3>
-                    <ul class="mt-5 space-y-3">
+                {{-- Regenerative --}}
+                <div class="rounded-3xl bg-paper p-7 text-ink shadow-xl sm:p-8">
+                    <h3 class="font-display text-xl font-semibold text-blue-500">{{ __('Comunicação regenerativa') }}</h3>
+                    <ul class="mt-6 space-y-3.5">
                         @foreach ($contrast as $c)
-                            <li class="flex items-start gap-3 text-sm text-parchment">
-                                <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-moss-500/30 text-moss-200">
+                            <li class="flex items-start gap-3 text-sm font-medium text-ink/90">
+                                <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500 text-cream">
                                     <x-ui.icon name="check" class="h-3 w-3" />
                                 </span>{{ $c['to'] }}
                             </li>
@@ -70,7 +83,7 @@
     <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div class="max-w-2xl">
             <x-ui.eyebrow>{{ __('Os nossos princípios') }}</x-ui.eyebrow>
-            <h2 class="mt-5 font-display text-4xl font-medium text-balance text-soil-900 sm:text-5xl">{{ __('Seis raízes que sustentam tudo') }}</h2>
+            <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">{{ __('Seis raízes que sustentam tudo') }}</h2>
         </div>
 
         @php
@@ -84,24 +97,22 @@
             ];
         @endphp
 
-        <div class="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($principles as $p)
-                <div class="reveal flex gap-6 border-t border-soil-200 pt-6">
-                    <span class="font-display text-3xl text-clay-500">{{ $p['n'] }}</span>
-                    <div>
-                        <h3 class="font-display text-2xl text-soil-900">{{ $p['title'] }}</h3>
-                        <p class="mt-2 text-pretty leading-relaxed text-soil-600">{{ $p['text'] }}</p>
-                    </div>
+                <div class="reveal group relative overflow-hidden rounded-3xl border border-cream-deep bg-paper p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <span class="font-wordmark text-5xl leading-none text-sky transition-colors group-hover:text-coral">{{ $p['n'] }}</span>
+                    <h3 class="mt-4 font-display text-xl font-semibold text-blue-500">{{ $p['title'] }}</h3>
+                    <p class="mt-2 text-pretty text-sm leading-relaxed text-ink/70">{{ $p['text'] }}</p>
                 </div>
             @endforeach
         </div>
     </section>
 
-    {{-- Pull quote --}}
-    <section class="bg-parchment-deep py-20 sm:py-24">
+    {{-- Pull quote — the bird with the sun --}}
+    <section class="bg-cream-deep py-20 sm:py-24">
         <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
-            <x-brand.mark class="mx-auto h-14 w-auto text-moss-600" />
-            <blockquote class="mt-8 font-display text-3xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
+            <x-brand.mark :sun="true" class="mx-auto h-16 w-auto text-blue-500" />
+            <blockquote class="mt-8 font-display text-3xl font-semibold leading-[1.15] tracking-tight text-balance text-blue-500 sm:text-4xl">
                 {{ __('Tornamos o bem mais alto — e levamo-lo mais fundo. É este o trabalho.') }}
             </blockquote>
         </div>

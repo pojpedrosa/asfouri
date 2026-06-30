@@ -9,14 +9,14 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
             fonts: [
-                // Organic editorial serif for display — soft, warm, alive.
-                bunny('Fraunces', {
-                    weights: [300, 400, 500, 600, 700, 900],
-                    styles: ['normal', 'italic'],
+                // Brand wordmark / display accents.
+                bunny('Yatra One', {
+                    weights: [400],
                 }),
-                // Clean, humanist grotesque for body copy.
-                bunny('Hanken Grotesk', {
-                    weights: [400, 500, 600, 700],
+                // Clean geometric sans for UI + body (pairs with the Yatra One logo).
+                bunny('Poppins', {
+                    weights: [300, 400, 500, 600, 700],
+                    styles: ['normal', 'italic'],
                 }),
             ],
         }),

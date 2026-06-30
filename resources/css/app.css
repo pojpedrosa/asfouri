@@ -7,71 +7,98 @@
 @source '../**/*.js';
 
 /* ─────────────────────────────────────────────────────────────────────────
-   asfouri — regenerative communication
-   A warm, earthy design language: living soil, clay, moss, wheat and dawn.
-   Display: Fraunces (organic serif).  Body: Hanken Grotesk (humanist sans).
+   asfouri — official brand identity
+   Electric blue (#0000F3) on cream (#F7F3EB), with coral / gold / sun / sky
+   accents. The sparrow. Wordmark: Yatra One. UI: Poppins.
    ───────────────────────────────────────────────────────────────────────── */
 
 @theme {
-    --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-    --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-wordmark: 'Yatra One', ui-serif, Georgia, serif;
 
-    /* Soil — deep earth, used for dark sections and primary text */
-    --color-soil-50: #f6f1e9;
-    --color-soil-100: #e9ddca;
-    --color-soil-200: #d2bd9c;
-    --color-soil-300: #b3936a;
-    --color-soil-400: #8f6c45;
-    --color-soil-500: #6f4f30;
-    --color-soil-600: #573c24;
-    --color-soil-700: #432d1b;
-    --color-soil-800: #2f2013;
-    --color-soil-900: #20160d;
-    --color-soil-950: #150e08;
+    /* ── Brand palette (use these going forward) ── */
+    --color-blue-50: #eaeaff;
+    --color-blue-100: #dcdcff;
+    --color-blue-200: #b9b9ff;
+    --color-blue-300: #8f8fff;
+    --color-blue-400: #4d4dff;
+    --color-blue-500: #0000f3;  /* primary */
+    --color-blue-600: #0000c4;
+    --color-blue-700: #00009a;
+    --color-blue-800: #000070;
+    --color-blue-900: #00004d;
 
-    /* Clay — terracotta, the warm accent / call-to-action */
-    --color-clay-50: #fbf0e9;
-    --color-clay-100: #f4d9c8;
-    --color-clay-200: #e8b496;
-    --color-clay-300: #db8c62;
-    --color-clay-400: #cf7048;
-    --color-clay-500: #c05a36;
-    --color-clay-600: #a4472a;
-    --color-clay-700: #843722;
-    --color-clay-800: #642a1c;
-    --color-clay-900: #4a2016;
+    --color-cream: #f7f3eb;
+    --color-cream-deep: #efe7d6;
+    --color-paper: #ffffff;
 
-    /* Moss — living green, growth */
-    --color-moss-50: #f1f4ea;
-    --color-moss-100: #dde6c9;
-    --color-moss-200: #c1d09e;
-    --color-moss-300: #a2b673;
-    --color-moss-400: #859d54;
-    --color-moss-500: #6c8341;
-    --color-moss-600: #546735;
-    --color-moss-700: #42512c;
-    --color-moss-800: #344022;
-    --color-moss-900: #232c17;
+    --color-coral: #f49370;
+    --color-coral-soft: #f9bda7;
+    --color-coral-deep: #b5441f;  /* coral for TEXT on cream — meets AA contrast */
+    --color-gold: #ddb323;
+    --color-sun: #fcdd79;
+    --color-sky: #b6c7e5;
+    --color-sky-soft: #d8e1f0;
+    --color-ink: #14141d;
 
-    /* Wheat — ochre / harvest gold */
-    --color-wheat-50: #fdf6e6;
-    --color-wheat-100: #f8e7bd;
-    --color-wheat-200: #f0cd83;
-    --color-wheat-300: #e6b454;
-    --color-wheat-400: #d99f35;
-    --color-wheat-500: #c0842a;
-    --color-wheat-600: #9c6722;
+    /* ── Back-compat: existing class names remapped to the brand, so every
+       current view renders on-brand with zero broken colours. ── */
+    --color-parchment: #f7f3eb;
+    --color-parchment-deep: #efe7d6;
 
-    /* Dawn — soft sky / the bird, asfouri */
-    --color-dawn-100: #e3ecec;
-    --color-dawn-200: #c2d6d8;
-    --color-dawn-300: #97b8bc;
-    --color-dawn-400: #6f989e;
-    --color-dawn-500: #527b81;
+    /* soil → dark text + bold (blue) sections */
+    --color-soil-50: #eef0f8;
+    --color-soil-100: #dfe2f1;
+    --color-soil-200: #c6cae6;
+    --color-soil-300: #9aa0cf;
+    --color-soil-400: #6a6f9e;
+    --color-soil-500: #54577c;
+    --color-soil-600: #41446a;
+    --color-soil-700: #2b2c4e;
+    --color-soil-800: #14146b;
+    --color-soil-900: #0000f3;
+    --color-soil-950: #00008c;
 
-    /* Parchment — the page itself */
-    --color-parchment: #f5efe1;
-    --color-parchment-deep: #efe6d2;
+    /* clay → primary blue (CTA/links) with coral as the warm mid-tone */
+    --color-clay-50: #eaeaff;
+    --color-clay-100: #dcdcff;
+    --color-clay-200: #fbdccf;
+    --color-clay-300: #f9bda7;
+    --color-clay-400: #f49370;
+    --color-clay-500: #0000f3;
+    --color-clay-600: #0000c4;
+    --color-clay-700: #00009a;
+    --color-clay-800: #000070;
+    --color-clay-900: #00004d;
+
+    /* moss → sky/blue family */
+    --color-moss-50: #eef2fb;
+    --color-moss-100: #dde7f6;
+    --color-moss-200: #c8d6ee;
+    --color-moss-300: #b6c7e5;
+    --color-moss-400: #8ba6d8;
+    --color-moss-500: #5d7ec5;
+    --color-moss-600: #0000f3;
+    --color-moss-700: #00009a;
+    --color-moss-800: #000070;
+    --color-moss-900: #00004d;
+
+    /* wheat → gold / sun */
+    --color-wheat-50: #fffaf0;
+    --color-wheat-100: #fdf1cb;
+    --color-wheat-200: #fce5a0;
+    --color-wheat-300: #fcdd79;
+    --color-wheat-400: #ddb323;
+    --color-wheat-500: #c79a1d;
+    --color-wheat-600: #9c7515;
+
+    /* dawn → sky */
+    --color-dawn-100: #e3ecf7;
+    --color-dawn-200: #b6c7e5;
+    --color-dawn-300: #95b1da;
+    --color-dawn-400: #6f8fc6;
+    --color-dawn-500: #52749e;
 
     --radius-blob: 42% 58% 63% 37% / 41% 44% 56% 59%;
 }
@@ -82,18 +109,20 @@
     }
 
     :where(body) {
-        background-color: var(--color-parchment);
-        color: var(--color-soil-900);
+        background-color: var(--color-cream);
+        color: var(--color-ink);
         font-feature-settings: 'ss01';
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Fraunces shines with a touch of optical softening */
-    h1, h2, h3, h4, .font-display {
-        font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
-        letter-spacing: -0.01em;
+    h1, h2, h3, h4 {
+        letter-spacing: -0.02em;
+    }
+
+    .font-wordmark {
+        letter-spacing: 0;
     }
 
     :where(a):focus-visible,
@@ -102,14 +131,14 @@
     :where(input):focus-visible,
     :where(textarea):focus-visible,
     :where(select):focus-visible {
-        outline: 2px solid var(--color-clay-500);
+        outline: 2px solid var(--color-blue-500);
         outline-offset: 3px;
         border-radius: 0.25rem;
     }
 
     ::selection {
-        background: var(--color-wheat-200);
-        color: var(--color-soil-900);
+        background: var(--color-sun);
+        color: var(--color-blue-700);
     }
 
     .skip-link {
@@ -117,8 +146,8 @@
         left: 0.75rem;
         top: -3.5rem;
         padding: 0.5rem 1rem;
-        background: var(--color-clay-500);
-        color: var(--color-parchment);
+        background: var(--color-blue-500);
+        color: var(--color-cream);
         font-weight: 600;
         border-radius: 0.6rem;
         transition: top 150ms ease;
@@ -139,7 +168,7 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
-        opacity: 0.45;
+        opacity: 0.35;
         mix-blend-mode: multiply;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
         z-index: 0;
@@ -161,15 +190,10 @@
         border-radius: var(--radius-blob);
     }
 
-    /* A hand-drawn underline that grows on reveal */
+    /* A highlight underline (brand sun-yellow) */
     .ink-underline {
-        background-image: linear-gradient(transparent 62%, var(--color-wheat-200) 62%);
+        background-image: linear-gradient(transparent 62%, var(--color-sun) 62%);
         background-size: 100% 100%;
-    }
-
-    /* Section dividers shaped like a soil horizon */
-    .horizon-top {
-        clip-path: polygon(0 12%, 8% 8%, 22% 14%, 38% 6%, 55% 13%, 72% 5%, 88% 12%, 100% 7%, 100% 100%, 0 100%);
     }
 
     /* Reveal-on-scroll */
@@ -190,7 +214,7 @@
         }
     }
 
-    /* Slow drift for the bird / seed motifs */
+    /* Slow drift for the bird / sun motifs */
     @keyframes drift {
         0%, 100% { transform: translateY(0) rotate(0deg); }
         50% { transform: translateY(-10px) rotate(2deg); }
@@ -200,10 +224,5 @@
     }
     @media (prefers-reduced-motion: reduce) {
         .animate-drift { animation: none; }
-    }
-
-    /* A growing-vine stroke animation for SVG roots */
-    @keyframes grow-stroke {
-        to { stroke-dashoffset: 0; }
     }
 }

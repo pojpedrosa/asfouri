@@ -1,14 +1,21 @@
 <x-layouts.site>
     {{-- ─────────────────────────── Hero ─────────────────────────── --}}
-    <section class="grain relative overflow-hidden">
-        <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-24 lg:pt-20">
+    <section class="relative overflow-hidden bg-cream">
+        {{-- playful geometric accents --}}
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-sun/45 blur-0"></div>
+            <div class="absolute right-40 top-24 hidden h-16 w-16 rounded-full bg-coral/70 lg:block"></div>
+            <div class="absolute -left-16 bottom-10 h-40 w-40 rounded-full bg-sky/50"></div>
+        </div>
+
+        <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-24 lg:pt-20">
             <div>
                 <x-ui.eyebrow>{{ __('Agência de comunicação regenerativa') }}</x-ui.eyebrow>
-                <h1 class="mt-6 font-display text-5xl font-medium leading-[0.98] text-balance text-soil-900 sm:text-6xl lg:text-7xl">
+                <h1 class="mt-6 font-display text-5xl font-semibold leading-[0.98] tracking-tight text-balance text-blue-500 sm:text-6xl lg:text-7xl">
                     {{ __('Comunicação que ganha raízes e') }}
-                    <span class="italic text-clay-600">{{ __('levanta voo') }}</span>.
+                    <span class="relative inline-block text-coral-deep">{{ __('levanta voo') }}</span>.
                 </h1>
-                <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-soil-700">
+                <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/80">
                     {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar — com profundidade, consentimento e criatividade humana.') }}
                 </p>
                 <div class="mt-9 flex flex-wrap items-center gap-3">
@@ -16,59 +23,41 @@
                     <x-ui.button :href="route('approach')" variant="outline" size="lg">{{ __('A nossa abordagem') }}</x-ui.button>
                 </div>
 
-                <dl class="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-soil-200 pt-8">
+                <dl class="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-blue-100 pt-8">
                     <div>
-                        <dt class="font-display text-3xl text-clay-600">100%</dt>
-                        <dd class="mt-1 text-sm text-soil-600">{{ __('Projetos com propósito regenerativo') }}</dd>
+                        <dt class="font-display text-3xl font-semibold text-blue-500">100%</dt>
+                        <dd class="mt-1 text-sm text-ink/60">{{ __('Projetos com propósito regenerativo') }}</dd>
                     </div>
                     <div>
-                        <dt class="font-display text-3xl text-clay-600">7</dt>
-                        <dd class="mt-1 text-sm text-soil-600">{{ __('Disciplinas, uma só raiz') }}</dd>
+                        <dt class="font-display text-3xl font-semibold text-blue-500">7</dt>
+                        <dd class="mt-1 text-sm text-ink/60">{{ __('Disciplinas, uma só raiz') }}</dd>
                     </div>
                     <div>
-                        <dt class="font-display text-3xl text-clay-600">PT·EN</dt>
-                        <dd class="mt-1 text-sm text-soil-600">{{ __('Trabalho em dois idiomas') }}</dd>
+                        <dt class="font-display text-3xl font-semibold text-blue-500">PT·EN</dt>
+                        <dd class="mt-1 text-sm text-ink/60">{{ __('Trabalho em dois idiomas') }}</dd>
                     </div>
                 </dl>
             </div>
 
-            {{-- Hero artwork: soil strata + sprout + bird --}}
+            {{-- Hero motif: the sparrow rising over a sun, with geometric shapes --}}
             <div class="relative mx-auto w-full max-w-md lg:max-w-none">
-                <div class="blob grain relative aspect-[4/5] w-full overflow-hidden bg-gradient-to-b from-wheat-100 via-clay-100 to-moss-200">
-                    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
-                        {{-- soil horizons --}}
-                        <path d="M0 330 C80 312 150 348 220 330 C300 310 350 340 400 326 L400 500 L0 500 Z" fill="#b3936a"/>
-                        <path d="M0 372 C90 356 160 388 240 372 C310 358 360 384 400 370 L400 500 L0 500 Z" fill="#8f6c45"/>
-                        <path d="M0 420 C100 408 180 432 260 420 C330 410 370 430 400 422 L400 500 L0 500 Z" fill="#573c24"/>
-                        {{-- dotted seeds / organisms in soil --}}
-                        <g fill="#f5efe1" opacity="0.55">
-                            <circle cx="70" cy="400" r="3"/><circle cx="140" cy="440" r="2.5"/>
-                            <circle cx="210" cy="402" r="3"/><circle cx="300" cy="446" r="2.5"/>
-                            <circle cx="350" cy="408" r="3"/><circle cx="120" cy="470" r="2"/>
-                            <circle cx="250" cy="466" r="2.5"/>
-                        </g>
-                        {{-- roots --}}
-                        <path d="M200 330 C198 360 190 380 176 404 M200 330 C204 362 214 384 230 408 M200 330 L200 420"
-                              stroke="#3a2817" stroke-width="2.4" stroke-linecap="round" opacity="0.65"/>
-                        {{-- stem + leaves --}}
-                        <path d="M200 330 C200 280 198 240 200 196" stroke="#42512c" stroke-width="6" stroke-linecap="round"/>
-                        <path d="M200 250 C170 244 142 220 128 188 C166 190 192 214 200 250 Z" fill="#6c8341"/>
-                        <path d="M200 226 C232 218 262 192 276 158 C236 162 210 188 200 226 Z" fill="#859d54"/>
-                        <path d="M200 200 C182 196 165 180 158 160 C180 162 196 178 200 200 Z" fill="#546735"/>
-                        {{-- the bird, asfouri --}}
-                        <g class="animate-drift" transform="translate(250 120)">
-                            <path d="M0 18 C6 8 18 4 30 8 C36 10 40 14 42 20 L52 14 C52 20 48 24 42 26 C44 34 38 42 28 44 C14 46 2 38 0 24 Z" fill="#432d1b"/>
-                            <circle cx="34" cy="17" r="2" fill="#f5efe1"/>
-                            <path d="M52 14 L62 11 L54 19 Z" fill="#c05a36"/>
-                            <path d="M10 24 C16 22 24 22 30 26" stroke="#f5efe1" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-                        </g>
-                        {{-- sun --}}
-                        <circle cx="92" cy="96" r="34" fill="#e6b454" opacity="0.7"/>
-                    </svg>
+                <div class="relative aspect-square w-full">
+                    {{-- big sun-circle behind the bird --}}
+                    <div class="absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sun"></div>
+                    {{-- thin ring accent --}}
+                    <div class="absolute left-1/2 top-1/2 h-[92%] w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-blue-500/15"></div>
+                    {{-- small floating shapes --}}
+                    <div class="absolute right-6 top-6 h-10 w-10 rounded-full bg-coral"></div>
+                    <div class="absolute bottom-8 left-2 h-6 w-6 rounded-full bg-blue-500"></div>
+                    <div class="absolute bottom-16 right-10 h-4 w-4 rounded-full bg-gold"></div>
+
+                    {{-- the bird --}}
+                    <x-brand.mark class="animate-drift absolute left-1/2 top-1/2 h-[56%] w-auto -translate-x-1/2 -translate-y-1/2 text-blue-500 drop-shadow-sm" />
                 </div>
-                <div class="absolute -bottom-5 -left-4 hidden rounded-2xl bg-parchment px-5 py-4 shadow-lg ring-1 ring-soil-100 sm:block">
-                    <p class="font-display text-lg text-soil-900">{{ __('Solo vivo,') }}</p>
-                    <p class="-mt-1 font-display text-lg italic text-clay-600">{{ __('histórias vivas.') }}</p>
+
+                <div class="absolute -bottom-3 -left-2 hidden rounded-2xl bg-paper px-5 py-4 shadow-lg ring-1 ring-blue-100 sm:block">
+                    <p class="font-display text-lg font-semibold text-blue-500">{{ __('Solo vivo,') }}</p>
+                    <p class="-mt-1 font-display text-lg font-medium text-coral-deep">{{ __('histórias vivas.') }}</p>
                 </div>
             </div>
         </div>
@@ -77,10 +66,10 @@
     {{-- ─────────────────────────── Manifesto teaser ─────────────────────────── --}}
     <section class="mx-auto max-w-5xl px-5 py-20 text-center sm:px-8 sm:py-28">
         <x-ui.eyebrow class="justify-center">{{ __('O que é comunicação regenerativa') }}</x-ui.eyebrow>
-        <p class="reveal mx-auto mt-7 max-w-3xl font-display text-2xl font-light leading-snug text-balance text-soil-800 sm:text-4xl">
+        <p class="reveal mx-auto mt-7 max-w-3xl font-display text-2xl font-medium leading-snug text-balance text-blue-500 sm:text-4xl">
             {{ __('Comunicar não é extrair atenção. É amplificar o que há de bom no mundo — com profundidade, e não com ruído.') }}
         </p>
-        <p class="reveal mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-soil-600">
+        <p class="reveal mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-ink/70">
             {{ __('Não se constrói um mundo regenerativo com comunicação extrativa. Recusamos a agressividade e a manipulação: menos mensagens, mais profundas; consentimento em vez de intrusão; criatividade humana à frente. O método tem de ser igual ao destino.') }}
         </p>
         <div class="mt-9">
@@ -89,15 +78,15 @@
     </section>
 
     {{-- ─────────────────────────── Services ─────────────────────────── --}}
-    <section class="bg-parchment-deep py-20 sm:py-28">
+    <section class="bg-cream-deep py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-5 sm:px-8">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                 <div class="max-w-2xl">
                     <x-ui.eyebrow>{{ __('Serviços') }}</x-ui.eyebrow>
-                    <h2 class="mt-5 font-display text-4xl font-medium text-balance text-soil-900 sm:text-5xl">
+                    <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
                         {{ __('Sete disciplinas, uma só raiz') }}
                     </h2>
-                    <p class="mt-4 max-w-xl text-pretty text-soil-600">
+                    <p class="mt-4 max-w-xl text-pretty text-ink/70">
                         {{ __('Do primeiro rascunho da estratégia ao código que sustenta a plataforma — cuidamos de toda a comunicação do seu projeto.') }}
                     </p>
                 </div>
@@ -114,22 +103,31 @@
                     ['icon' => 'branding', 'title' => __('Branding e ilustração'),             'text' => __('Identidades vivas e ilustração feita à mão que tornam a sua marca inconfundível.'), 'anchor' => 'branding'],
                     ['icon' => 'brand',    'title' => __('Gestão de marca'),                  'text' => __('Acompanhamento contínuo para a marca crescer coerente ao longo das estações.'), 'anchor' => 'marca'],
                 ];
+                $iconTints = [
+                    'bg-blue-50 text-blue-500',
+                    'bg-coral-soft/50 text-coral',
+                    'bg-sky-soft text-blue-500',
+                    'bg-sun/40 text-blue-700',
+                    'bg-blue-50 text-blue-500',
+                    'bg-coral-soft/50 text-coral',
+                    'bg-sky-soft text-blue-500',
+                ];
             @endphp
 
             <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($services as $i => $s)
                     <a href="{{ route('services') }}#{{ $s['anchor'] }}"
                        @class([
-                           'reveal group flex flex-col rounded-2xl border border-soil-100 bg-parchment p-7 transition duration-300 hover:-translate-y-1 hover:border-clay-200 hover:shadow-lg',
+                           'reveal group flex flex-col rounded-3xl border border-blue-100/70 bg-paper p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl',
                            'lg:col-span-1' => true,
                            'sm:col-span-2 lg:col-span-1' => $i === 6,
                        ])>
-                        <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-moss-100 text-moss-700 transition group-hover:bg-clay-100 group-hover:text-clay-600">
+                        <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl {{ $iconTints[$i] ?? 'bg-blue-50 text-blue-500' }} transition group-hover:bg-blue-500 group-hover:text-cream">
                             <x-ui.icon :name="$s['icon']" class="h-6 w-6" />
                         </span>
-                        <h3 class="mt-5 font-display text-xl font-medium text-soil-900">{{ $s['title'] }}</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-soil-600">{{ $s['text'] }}</p>
-                        <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-clay-600">
+                        <h3 class="mt-5 font-display text-xl font-semibold text-ink">{{ $s['title'] }}</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-ink/65">{{ $s['text'] }}</p>
+                        <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-500">
                             {{ __('Saber mais') }}
                             <x-ui.icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                         </span>
@@ -139,14 +137,21 @@
         </div>
     </section>
 
-    {{-- ─────────────────────────── Principles (dark soil) ─────────────────────────── --}}
-    <section class="relative bg-soil-900 py-20 text-soil-100 sm:py-28">
-        <div class="grain mx-auto max-w-7xl px-5 sm:px-8">
+    {{-- ─────────────────────────── Principles (bold blue band) ─────────────────────────── --}}
+    <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-28">
+        {{-- geometric punctuation + a white bird --}}
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-400/40"></div>
+            <div class="absolute bottom-0 left-1/3 h-44 w-44 rounded-full bg-blue-700/50"></div>
+            <x-brand.mark class="absolute -right-2 bottom-6 h-44 w-auto text-cream/10" />
+        </div>
+
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
             <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-wheat-300">
-                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-wheat-400"></span>{{ __('Princípios') }}
+                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-sun">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-sun"></span>{{ __('Princípios') }}
                 </span>
-                <h2 class="mt-5 font-display text-4xl font-medium text-balance text-parchment sm:text-5xl">
+                <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-cream sm:text-5xl">
                     {{ __('Cultivamos como quem cuida do solo') }}
                 </h2>
             </div>
@@ -164,10 +169,10 @@
 
             <div class="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($principles as $p)
-                    <div class="reveal border-t border-soil-700 pt-5">
-                        <span class="font-display text-2xl text-wheat-300">{{ $p['n'] }}</span>
-                        <h3 class="mt-3 font-display text-xl text-parchment">{{ $p['title'] }}</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-soil-200">{{ $p['text'] }}</p>
+                    <div class="reveal border-t border-cream/25 pt-5">
+                        <span class="font-display text-2xl font-semibold text-sun">{{ $p['n'] }}</span>
+                        <h3 class="mt-3 font-display text-xl font-semibold text-cream">{{ $p['title'] }}</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-cream/75">{{ $p['text'] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -178,7 +183,7 @@
     <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div class="max-w-2xl">
             <x-ui.eyebrow>{{ __('Como trabalhamos') }}</x-ui.eyebrow>
-            <h2 class="mt-5 font-display text-4xl font-medium text-balance text-soil-900 sm:text-5xl">
+            <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
                 {{ __('Da semente à colheita') }}
             </h2>
         </div>
@@ -194,28 +199,35 @@
 
         <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             @foreach ($process as $i => $step)
-                <div class="reveal relative rounded-2xl bg-moss-50 p-7">
-                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-moss-600 text-parchment">
+                <div class="reveal group relative overflow-hidden rounded-3xl bg-sky-soft/60 p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    {{-- a soft sun in the corner --}}
+                    <div class="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-sun/50" aria-hidden="true"></div>
+                    <span class="relative inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-cream">
                         <x-ui.icon :name="$step['icon']" class="h-6 w-6" />
                     </span>
-                    <p class="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-moss-700">{{ sprintf('%02d', $i + 1) }}</p>
-                    <h3 class="mt-1 font-display text-2xl text-soil-900">{{ $step['step'] }}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-soil-600">{{ $step['text'] }}</p>
+                    <p class="relative mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-blue-500">{{ sprintf('%02d', $i + 1) }}</p>
+                    <h3 class="relative mt-1 font-display text-2xl font-semibold text-ink">{{ $step['step'] }}</h3>
+                    <p class="relative mt-2 text-sm leading-relaxed text-ink/65">{{ $step['text'] }}</p>
                 </div>
             @endforeach
         </div>
     </section>
 
     {{-- ─────────────────────────── Who we serve ─────────────────────────── --}}
-    <section class="bg-parchment-deep py-20 sm:py-28">
+    <section class="bg-cream-deep py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-5 sm:px-8">
             <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-                <div>
+                <div class="relative">
+                    {{-- sun-circle motif with the bird --}}
+                    <div class="relative mb-10 hidden h-28 w-28 lg:block">
+                        <div class="absolute inset-0 rounded-full bg-sun"></div>
+                        <x-brand.mark class="absolute left-1/2 top-1/2 h-16 w-auto -translate-x-1/2 -translate-y-1/2 text-blue-500" />
+                    </div>
                     <x-ui.eyebrow>{{ __('Para quem') }}</x-ui.eyebrow>
-                    <h2 class="mt-5 font-display text-4xl font-medium text-balance text-soil-900 sm:text-5xl">
+                    <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
                         {{ __('Quem semeia futuro') }}
                     </h2>
-                    <p class="mt-5 max-w-md text-pretty leading-relaxed text-soil-600">
+                    <p class="mt-5 max-w-md text-pretty leading-relaxed text-ink/70">
                         {{ __('Somos parceiros de comunicação de universidades, ONG, redes e projetos europeus — e de empresas que querem comunicar de outra forma. Se está a fazer algo bom no mundo, ajudamos a torná-lo mais alto.') }}
                     </p>
                     <div class="mt-8">
@@ -237,11 +249,11 @@
                 @endphp
                 <ul class="grid gap-3 sm:grid-cols-2">
                     @foreach ($audiences as $a)
-                        <li class="reveal flex items-start gap-3 rounded-xl bg-parchment px-5 py-4 ring-1 ring-soil-100">
-                            <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-moss-100 text-moss-700">
-                                <x-ui.icon name="leaf" class="h-4 w-4" />
+                        <li class="reveal flex items-start gap-3 rounded-2xl bg-paper px-5 py-4 ring-1 ring-blue-100/70 transition hover:ring-blue-200">
+                            <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500 text-cream">
+                                <x-ui.icon name="check" class="h-3.5 w-3.5" />
                             </span>
-                            <span class="text-sm font-medium text-soil-800">{{ $a }}</span>
+                            <span class="text-sm font-medium text-ink/85">{{ $a }}</span>
                         </li>
                     @endforeach
                 </ul>

@@ -5,7 +5,7 @@
 ])
 
 @php
-    $base = 'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2';
+    $base = 'group inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2';
 
     $sizes = [
         'md' => 'px-5 py-2.5 text-sm',
@@ -13,10 +13,14 @@
     ];
 
     $variants = [
-        'primary' => 'bg-clay-500 text-parchment hover:bg-clay-600 shadow-sm hover:shadow-md',
-        'outline' => 'border border-soil-300 text-soil-800 hover:border-soil-500 hover:bg-soil-50',
-        'light'   => 'bg-parchment text-soil-900 hover:bg-white shadow-sm',
-        'ghost'   => 'text-soil-700 hover:text-clay-600',
+        // Solid electric blue with cream text — the primary action (reads on cream).
+        'primary' => 'bg-blue-500 text-cream hover:bg-blue-700 shadow-sm hover:shadow-md',
+        // Blue outline + blue text — quiet on cream, becomes solid on hover.
+        'outline' => 'border border-blue-500/60 text-blue-500 hover:border-blue-500 hover:bg-blue-500 hover:text-cream',
+        // Cream/paper fill with blue text — the primary action ON a blue band.
+        'light'   => 'bg-cream text-blue-700 hover:bg-paper shadow-sm',
+        // Text-only — blue on cream, deepens on hover.
+        'ghost'   => 'text-blue-500 hover:text-blue-700',
     ];
 
     $classes = implode(' ', [$base, $sizes[$size] ?? $sizes['md'], $variants[$variant] ?? $variants['primary']]);

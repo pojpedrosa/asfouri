@@ -32,8 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook('panels::auth.login.form.after', fn () => view('auth.magic-link-button'))
             ->brandName('asfouri')
             ->colors([
-                'primary' => Color::hex('#c05a36'), // clay
-                'gray' => Color::hex('#6f4f30'),    // soil
+                'primary' => Color::hex('#0000f3'), // asfouri blue
             ])
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

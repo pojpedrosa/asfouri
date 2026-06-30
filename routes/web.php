@@ -34,3 +34,7 @@ Route::get('/magic-login/{token}', [MagicLinkController::class, 'verify'])
 Route::get('/mail/attachment/{attachment}', [MailAttachmentController::class, 'download'])
     ->middleware('auth')
     ->name('mail.attachment');
+
+// Legal pages.
+Route::view('/privacidade', 'pages.privacy')->name('privacy');
+Route::view('/termos', 'pages.terms')->name('terms');

@@ -1,20 +1,14 @@
-@props(['class' => 'h-10 w-auto'])
+@props(['class' => 'h-10 w-auto', 'sun' => false])
 
-{{-- asfouri mark — a seed that puts down roots and rises in two leaves.
-     Rooted, and taking flight. Inherits currentColor. --}}
+{{-- asfouri mark — the sparrow ("little bird"). Inherits currentColor.
+     Optional rising sun (brand yellow) behind it. --}}
 <svg {{ $attributes->merge(['class' => $class]) }}
-     viewBox="0 0 48 72" fill="none" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 8 48 62" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
      role="img" aria-hidden="true">
-    {{-- roots --}}
-    <path d="M24 49 L24 67 M24 53 C21 58 17 60 13 63 M24 53 C27 58 31 61 35 64"
-          stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-    {{-- seed --}}
-    <circle cx="24" cy="46" r="4.4" fill="currentColor"/>
-    {{-- stem --}}
-    <path d="M24 46 C24 39 23 33 24 27"
-          stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    {{-- right leaf (a wing rising) --}}
-    <path d="M24 31 C30 28 38 19 41 9 C32 11 26 20 24 31 Z" fill="currentColor"/>
-    {{-- left leaf --}}
-    <path d="M24 37 C18 35 12 29 9 22 C16 23 21 29 24 37 Z" fill="currentColor" opacity="0.78"/>
+    @if ($sun)
+        <circle cx="36" cy="22" r="11" fill="#fcdd79"/>
+    @endif
+    <path d="M40.89,24.88c-.28-.12-.23-.8-.32-1.1,0,0,0-.02-.01-.02l-.03-.57c.01-.86-1.42-2.75-2.45-2.99-4.48-1.03-7.37-1.22-8.53-1.16-1.16.05-3.49,1.75-6.98,5.08-3.49,3.34-5.63,6.06-7.06,7.64-.42.62-3.52,4.18-5.45,6.58-2.23,2.77-5.72,7.32-5.59,11.87.13,4.55.29,17.97.24,19.57l9.65-2.72v-13.83c4.28,4.19,7.77,6.29,10.47,6.29,2.54-.05,5.77-2.41,9.68-7.06,3.92-4.66,5.31-8.07,5.87-10.01.45-1.53.66-10.45.66-10.45l-.19-3.24c.03-.05.04-.12.04-.19,0-.12-.05-.36-.08-.59l-.03-.55c.1-.2.78-.27,1-.33,1.01-.31,2.02-.66,3.07-.86l.53-.25-4.48-1.11ZM35,26.4c-.9-.42-1.57-1.07-2.01-1.93.04-.28.3-.64.79-1.08.49-.44.89-.7,1.19-.77.9.41,1.56,1.03,1.98,1.88-.3.76-.95,1.39-1.96,1.9Z"/>
+    <path d="M23.83,58.83c-.12.12,2.09,6.18,2.35,6.7l3.2,1.19c.32.12.7.35.48.35h-6.57c-.11-.02-.23-.1-.11-.19l1.49-.92c.1-.08.16-.18.16-.29-.01-.41-1.91-6.52-2.32-6.78,0,0,1.8-.09,1.3-.06Z"/>
+    <path d="M30.42,56.58c-.12.12,2.35,6.7,2.61,7.23l3.2,1.19c.32.12.7.35.48.35h-6.57c-.11-.02-.23-.1-.11-.19l1.49-.92c.1-.08.16-.18.16-.29-.01-.41-2.16-7.04-2.58-7.3,0,0,1.8-.09,1.3-.06Z"/>
 </svg>
