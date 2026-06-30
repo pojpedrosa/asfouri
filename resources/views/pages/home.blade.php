@@ -22,21 +22,6 @@
                     <x-ui.button :href="route('services')" size="lg">{{ __('Ver o que fazemos') }}</x-ui.button>
                     <x-ui.button :href="route('approach')" variant="outline" size="lg">{{ __('A nossa abordagem') }}</x-ui.button>
                 </div>
-
-                <dl class="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-blue-100 pt-8">
-                    <div>
-                        <dt class="font-display text-3xl font-semibold text-blue-500">100%</dt>
-                        <dd class="mt-1 text-sm text-ink/60">{{ __('Projetos com propósito regenerativo') }}</dd>
-                    </div>
-                    <div>
-                        <dt class="font-display text-3xl font-semibold text-blue-500">7</dt>
-                        <dd class="mt-1 text-sm text-ink/60">{{ __('Disciplinas, uma só raiz') }}</dd>
-                    </div>
-                    <div>
-                        <dt class="font-display text-3xl font-semibold text-blue-500">PT·EN</dt>
-                        <dd class="mt-1 text-sm text-ink/60">{{ __('Trabalho em dois idiomas') }}</dd>
-                    </div>
-                </dl>
             </div>
 
             {{-- Hero motif: the sparrow rising over a sun, with geometric shapes --}}
