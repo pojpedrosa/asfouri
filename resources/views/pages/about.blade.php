@@ -12,7 +12,7 @@
                 <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
                     <span class="font-wordmark lowercase">{{ __('asfouri') }}</span>
                     <span class="text-sky"> · </span>
-                    <span class="text-coral-deep">{{ __('o meu pequeno pássaro') }}</span>
+                    <span class="text-gold">{{ __('o meu pequeno pássaro') }}</span>
                 </h2>
                 <p class="mt-6 text-pretty text-lg leading-relaxed text-ink/80">
                     {{ __('Em árabe, “asfour” (عصفور) é pássaro; “asfouri” (عصفوري) é a forma afetuosa — o meu passarinho. Um pássaro vive entre dois mundos: enraíza-se na terra para se alimentar e nidificar, e levanta voo para cantar, semear e ligar lugares distantes.') }}
@@ -38,7 +38,7 @@
                 {{-- floating caption chip --}}
                 <div class="absolute -bottom-5 -left-4 hidden rounded-2xl bg-paper px-5 py-4 shadow-lg ring-1 ring-cream-deep sm:block">
                     <p class="font-display text-lg font-semibold text-blue-500">{{ __('Raízes e voo,') }}</p>
-                    <p class="-mt-1 font-display text-lg font-medium text-coral-deep">{{ __('a mesma ave.') }}</p>
+                    <p class="-mt-1 font-display text-lg font-medium text-gold">{{ __('a mesma ave.') }}</p>
                 </div>
             </div>
         </div>
@@ -84,6 +84,9 @@
             @endforeach
         </div>
     </section>
+
+    {{-- Team --}}
+    <x-site.team />
 
     {{-- How we work — bold blue band (the engine) --}}
     <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-24">

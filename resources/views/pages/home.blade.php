@@ -13,7 +13,7 @@
                 <x-ui.eyebrow>{{ __('Agência de comunicação regenerativa') }}</x-ui.eyebrow>
                 <h1 class="mt-6 font-display text-5xl font-semibold leading-[0.98] tracking-tight text-balance text-blue-500 sm:text-6xl lg:text-7xl">
                     {{ __('Comunicação que ganha raízes e') }}
-                    <span class="relative inline-block text-coral-deep">{{ __('levanta voo') }}</span>.
+                    <span class="relative inline-block text-gold">{{ __('levanta voo') }}</span>.
                 </h1>
                 <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/80">
                     {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar — com profundidade, consentimento e criatividade humana.') }}
@@ -57,7 +57,7 @@
 
                 <div class="absolute -bottom-3 -left-2 hidden rounded-2xl bg-paper px-5 py-4 shadow-lg ring-1 ring-blue-100 sm:block">
                     <p class="font-display text-lg font-semibold text-blue-500">{{ __('Solo vivo,') }}</p>
-                    <p class="-mt-1 font-display text-lg font-medium text-coral-deep">{{ __('histórias vivas.') }}</p>
+                    <p class="-mt-1 font-display text-lg font-medium text-gold">{{ __('histórias vivas.') }}</p>
                 </div>
             </div>
         </div>

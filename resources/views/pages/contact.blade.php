@@ -37,18 +37,18 @@
 
                         <div class="grid gap-6 sm:grid-cols-2">
                             <div>
-                                <label for="name" class="block text-sm font-semibold text-blue-800">{{ __('Nome') }} <span class="text-coral-deep">*</span></label>
+                                <label for="name" class="block text-sm font-semibold text-blue-800">{{ __('Nome') }} <span class="text-gold">*</span></label>
                                 <input id="name" name="name" type="text" required value="{{ old('name') }}"
                                        class="mt-2 w-full rounded-xl border border-cream-deep bg-paper px-4 py-3 text-ink placeholder:text-ink/40 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                                        placeholder="{{ __('O seu nome') }}" />
-                                @error('name') <p class="mt-1.5 text-sm text-coral-deep">{{ $message }}</p> @enderror
+                                @error('name') <p class="mt-1.5 text-sm text-gold">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-semibold text-blue-800">{{ __('Email') }} <span class="text-coral-deep">*</span></label>
+                                <label for="email" class="block text-sm font-semibold text-blue-800">{{ __('Email') }} <span class="text-gold">*</span></label>
                                 <input id="email" name="email" type="email" required value="{{ old('email') }}"
                                        class="mt-2 w-full rounded-xl border border-cream-deep bg-paper px-4 py-3 text-ink placeholder:text-ink/40 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                                        placeholder="nome@exemplo.pt" />
-                                @error('email') <p class="mt-1.5 text-sm text-coral-deep">{{ $message }}</p> @enderror
+                                @error('email') <p class="mt-1.5 text-sm text-gold">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
@@ -58,23 +58,23 @@
                                 <input id="organisation" name="organisation" type="text" value="{{ old('organisation') }}"
                                        class="mt-2 w-full rounded-xl border border-cream-deep bg-paper px-4 py-3 text-ink placeholder:text-ink/40 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                                        placeholder="{{ __('Projeto, marca ou coletivo') }}" />
-                                @error('organisation') <p class="mt-1.5 text-sm text-coral-deep">{{ $message }}</p> @enderror
+                                @error('organisation') <p class="mt-1.5 text-sm text-gold">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label for="subject" class="block text-sm font-semibold text-blue-800">{{ __('Assunto') }}</label>
                                 <input id="subject" name="subject" type="text" value="{{ old('subject') }}"
                                        class="mt-2 w-full rounded-xl border border-cream-deep bg-paper px-4 py-3 text-ink placeholder:text-ink/40 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                                        placeholder="{{ __('Em que podemos ajudar?') }}" />
-                                @error('subject') <p class="mt-1.5 text-sm text-coral-deep">{{ $message }}</p> @enderror
+                                @error('subject') <p class="mt-1.5 text-sm text-gold">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
                         <div>
-                            <label for="message" class="block text-sm font-semibold text-blue-800">{{ __('Mensagem') }} <span class="text-coral-deep">*</span></label>
+                            <label for="message" class="block text-sm font-semibold text-blue-800">{{ __('Mensagem') }} <span class="text-gold">*</span></label>
                             <textarea id="message" name="message" rows="6" required
                                       class="mt-2 w-full rounded-xl border border-cream-deep bg-paper px-4 py-3 text-ink placeholder:text-ink/40 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                                       placeholder="{{ __('Conte-nos sobre o seu projeto, os seus objetivos e o que procura.') }}">{{ old('message') }}</textarea>
-                            @error('message') <p class="mt-1.5 text-sm text-coral-deep">{{ $message }}</p> @enderror
+                            @error('message') <p class="mt-1.5 text-sm text-gold">{{ $message }}</p> @enderror
                         </div>
 
                         <div class="flex flex-wrap items-center gap-4">

@@ -138,10 +138,10 @@
             ],
             'coral' => [
                 'tile' => 'bg-coral text-ink',
-                'lead' => 'text-coral-deep',
+                'lead' => 'text-gold',
                 'num'  => 'text-blue-400',
                 'sun'  => 'bg-coral-soft/50',
-                'bullet' => 'bg-coral-soft/40 text-coral-deep',
+                'bullet' => 'bg-coral-soft/40 text-gold',
                 'rule' => 'group-hover/svc:text-coral',
             ],
             'gold' => [
