@@ -6,6 +6,8 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -33,6 +35,21 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('asfouri')
             ->colors([
                 'primary' => Color::hex('#0000f3'), // asfouri blue
+            ])
+            // "Open my email" — links to the self-hosted SnappyMail webmail.
+            ->navigationItems([
+                NavigationItem::make('Webmail')
+                    ->label('A minha caixa de email')
+                    ->url('https://mail.asfouri.media', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-envelope')
+                    ->group('Correio')
+                    ->sort(-10),
+            ])
+            ->userMenuItems([
+                MenuItem::make('webmail')
+                    ->label('Abrir webmail')
+                    ->url('https://mail.asfouri.media', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-envelope'),
             ])
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
