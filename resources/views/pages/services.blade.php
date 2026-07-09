@@ -6,7 +6,7 @@
         <div class="mt-10 flex flex-wrap gap-2">
             @php
                 $chips = [
-                    'comunicacao' => __('Comunicação regenerativa'),
+                    'comunicacao' => __('Estratégia e narrativa'),
                     'redes' => __('Redes sociais'),
                     'plataformas' => __('Plataformas web'),
                     'offline' => __('Offline'),
@@ -25,8 +25,8 @@
         $services = [
             [
                 'id' => 'comunicacao', 'icon' => 'comms', 'num' => '01', 'accent' => 'blue',
-                'title' => __('Comunicação regenerativa'),
-                'lead' => __('Estratégia e narrativa que dão voz ao impacto real do seu projeto — sem greenwashing, sem ruído.'),
+                'title' => __('Estratégia e narrativa'),
+                'lead' => __('Damos voz ao impacto real do seu projeto — sem greenwashing, sem ruído.'),
                 'body' => __('Construímos a história da sua organização a partir do que ela realmente faz pelo mundo. Definimos mensagens, tom e arquitetura de conteúdos que aproximam as pessoas certas e regeneram confiança a cada contacto.'),
                 'items' => [
                     __('Estratégia de comunicação e posicionamento'),
@@ -39,7 +39,7 @@
             ],
             [
                 'id' => 'redes', 'icon' => 'social', 'num' => '02', 'accent' => 'coral',
-                'title' => __('Gestão de redes sociais regenerativa'),
+                'title' => __('Gestão de redes sociais'),
                 'lead' => __('Presença digital cultivada com ritmo humano: comunidade em vez de vaidade.'),
                 'body' => __('Gerimos as suas redes como quem cuida de um jardim partilhado — conteúdo consistente, conversa genuína e métricas que importam. Menos algoritmo a perseguir, mais relação a florescer.'),
                 'items' => [

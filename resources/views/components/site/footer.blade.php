@@ -25,7 +25,7 @@
             <div>
                 <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-sun">{{ __('Serviços') }}</h3>
                 <ul class="mt-4 space-y-2.5 text-sm text-cream/75">
-                    <li><a href="{{ route('services') }}#comunicacao" class="transition hover:text-cream">{{ __('Comunicação regenerativa') }}</a></li>
+                    <li><a href="{{ route('services') }}#comunicacao" class="transition hover:text-cream">{{ __('Estratégia e narrativa') }}</a></li>
                     <li><a href="{{ route('services') }}#redes" class="transition hover:text-cream">{{ __('Gestão de redes sociais') }}</a></li>
                     <li><a href="{{ route('services') }}#plataformas" class="transition hover:text-cream">{{ __('Aplicações e plataformas web') }}</a></li>
                     <li><a href="{{ route('services') }}#offline" class="transition hover:text-cream">{{ __('Componente offline') }}</a></li>

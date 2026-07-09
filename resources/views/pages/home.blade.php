@@ -80,7 +80,7 @@
 
             @php
                 $services = [
-                    ['icon' => 'comms',    'title' => __('Comunicação regenerativa'),        'text' => __('Estratégia e narrativa que dão voz ao impacto real do seu projeto, sem greenwashing.'), 'anchor' => 'comunicacao'],
+                    ['icon' => 'comms',    'title' => __('Estratégia e narrativa'),           'text' => __('Damos voz ao impacto real do seu projeto, sem greenwashing.'), 'anchor' => 'comunicacao'],
                     ['icon' => 'social',   'title' => __('Gestão de redes sociais'),          'text' => __('Presença digital cultivada com ritmo humano: comunidade em vez de vaidade.'), 'anchor' => 'redes'],
                     ['icon' => 'web',      'title' => __('Aplicações e plataformas web'),     'text' => __('Sites, plataformas e ferramentas sob medida, rápidas, acessíveis e sustentáveis.'), 'anchor' => 'plataformas'],
                     ['icon' => 'offline',  'title' => __('Componente offline'),               'text' => __('Editorial, impressão, sinalética, instalações e eventos — comunicação que se toca.'), 'anchor' => 'offline'],
@@ -143,12 +143,12 @@
 
             @php
                 $principles = [
-                    ['n' => '01', 'title' => __('Profundidade acima do alcance'),  'text' => __('Chegar a menos pessoas, mas fundo. Vale mais uma relação verdadeira do que mil impressões esquecidas.')],
-                    ['n' => '02', 'title' => __('Regenerar é mais eficaz'),         'text' => __('Largar a agressividade gera mais ação real — e conversões com sentido — do que a manipulação.')],
-                    ['n' => '03', 'title' => __('Criatividade humana primeiro'),    'text' => __('Artistas e originalidade à frente, num mundo a achatar-se na repetição da IA.')],
-                    ['n' => '04', 'title' => __('Consentimento, nunca intrusão'),   'text' => __('Comunicamos com permissão e escuta, protegendo a relação das pessoas com os media.')],
-                    ['n' => '05', 'title' => __('Multiplicar o bem'),               'text' => __('Não inventamos o bem — encontramo-lo em quem já o faz e amplificamo-lo mais longe.')],
-                    ['n' => '06', 'title' => __('Tecnologia ao serviço da vida'),   'text' => __('IA incluída, com uma só pergunta: isto serve as pessoas e o planeta? Se não servir, não entra.')],
+                    ['n' => '01', 'title' => __('Profundidade'),      'text' => __('Damos ênfase à profundidade das ligações, e não ao número de impressões. Trabalhamos uma comunicação com impacto, que fica na memória e permanece acessível.')],
+                    ['n' => '02', 'title' => __('Regeneração'),       'text' => __('Criamos modelos de comunicação centrados na longevidade e na restauração, moldados e adaptados pelas comunidades que alcançam e que os inspiram.')],
+                    ['n' => '03', 'title' => __('Centrado no humano'),'text' => __('Valorizamos e trabalhamos com artistas e criações originais, recusando ceder a um mundo que se achata na uniformidade da IA.')],
+                    ['n' => '04', 'title' => __('Consentimento'),     'text' => __('Gerimos a comunicação com permissão e escuta ativa das comunidades, parceiros e partes interessadas envolvidas.')],
+                    ['n' => '05', 'title' => __('Adaptação'),         'text' => __('As ferramentas e os formatos de comunicação adaptam-se a cada projeto e às comunidades e públicos envolvidos. Não assumimos os canais convencionais como os únicos e mais eficazes para amplificar.')],
+                    ['n' => '06', 'title' => __('Tecnologia'),        'text' => __('Usamos a tecnologia e a IA como ferramenta, com uma só pergunta no centro: isto serve as pessoas e o planeta? Se não servir, não entra.')],
                 ];
             @endphp
 

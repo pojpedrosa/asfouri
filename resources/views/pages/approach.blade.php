@@ -88,12 +88,12 @@
 
         @php
             $principles = [
-                ['n' => '01', 'title' => __('Profundidade acima do alcance'),  'text' => __('Chegar a menos pessoas, mas fundo. Uma relação verdadeira vale mais do que milhares de impressões que ninguém retém. É o princípio que mais defendemos.')],
-                ['n' => '02', 'title' => __('Regenerar é mais eficaz'),         'text' => __('Largar a agressividade não é abdicar de resultados. Comunicação honesta gera mais ação real — e conversões com sentido — do que a manipulação.')],
-                ['n' => '03', 'title' => __('Criatividade humana primeiro'),    'text' => __('Num mundo a achatar-se na repetição da IA, trazemos artistas e originalidade para a frente. A IA liberta tempo; as pessoas trazem a alma.')],
-                ['n' => '04', 'title' => __('Consentimento, nunca intrusão'),   'text' => __('Comunicamos com permissão e escuta. Protegemos a relação das pessoas com os media, em vez de a desgastar.')],
-                ['n' => '05', 'title' => __('Multiplicar o bem'),               'text' => __('Não inventamos o bem — encontramo-lo em quem já o faz e amplificamo-lo. Tornamos o bem mais alto e levamo-lo mais longe.')],
-                ['n' => '06', 'title' => __('Tecnologia ao serviço da vida'),   'text' => __('Abraçamos novas ferramentas, IA incluída, com uma só pergunta: isto serve as pessoas e o planeta? Se não servir, não entra.')],
+                ['n' => '01', 'title' => __('Profundidade'),      'text' => __('Damos ênfase à profundidade das ligações, e não ao número de impressões. Trabalhamos uma comunicação com impacto, que fica na memória e permanece acessível.')],
+                ['n' => '02', 'title' => __('Regeneração'),       'text' => __('Criamos modelos de comunicação centrados na longevidade e na restauração, moldados e adaptados pelas comunidades que alcançam e que os inspiram.')],
+                ['n' => '03', 'title' => __('Centrado no humano'),'text' => __('Valorizamos e trabalhamos com artistas e criações originais, recusando ceder a um mundo que se achata na uniformidade da IA.')],
+                ['n' => '04', 'title' => __('Consentimento'),     'text' => __('Gerimos a comunicação com permissão e escuta ativa das comunidades, parceiros e partes interessadas envolvidas.')],
+                ['n' => '05', 'title' => __('Adaptação'),         'text' => __('As ferramentas e os formatos de comunicação adaptam-se a cada projeto e às comunidades e públicos envolvidos. Não assumimos os canais convencionais como os únicos e mais eficazes para amplificar.')],
+                ['n' => '06', 'title' => __('Tecnologia'),        'text' => __('Usamos a tecnologia e a IA como ferramenta, com uma só pergunta no centro: isto serve as pessoas e o planeta? Se não servir, não entra.')],
             ];
         @endphp
 
