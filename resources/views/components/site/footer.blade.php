@@ -67,7 +67,7 @@
         </div>
 
         <div class="mt-16 flex flex-col gap-3 border-t border-cream/15 pt-6 text-xs text-cream/60 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {{ $year }} asfouri — {{ __('comunicação regenerativa') }}. {{ __('Feito com cuidado, em Portugal.') }}</p>
+            <p>© {{ $year }} asfouri — {{ __('comunicação regenerativa') }}.</p>
             <p class="text-cream/45">{{ __('عصفوري · pequeno pássaro · enraizar e levantar voo') }}</p>
         </div>
     </div>
