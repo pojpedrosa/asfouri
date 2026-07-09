@@ -16,7 +16,7 @@
                     <span class="relative inline-block text-gold">{{ __('levanta voo') }}</span>.
                 </h1>
                 <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/80">
-                    {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar — com profundidade, consentimento e criatividade humana.') }}
+                    {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar com profundidade, colaboração e criatividade humana.') }}
                 </p>
                 <div class="mt-9 flex flex-wrap items-center gap-3">
                     <x-ui.button :href="route('services')" size="lg">{{ __('Ver o que fazemos') }}</x-ui.button>
@@ -52,10 +52,10 @@
     <section class="mx-auto max-w-5xl px-5 py-20 text-center sm:px-8 sm:py-28">
         <x-ui.eyebrow class="justify-center">{{ __('O que é comunicação regenerativa') }}</x-ui.eyebrow>
         <p class="reveal mx-auto mt-7 max-w-3xl font-display text-2xl font-medium leading-snug text-balance text-blue-500 sm:text-4xl">
-            {{ __('Comunicar não é extrair atenção. É amplificar o que há de bom no mundo — com profundidade, e não com ruído.') }}
+            {{ __('A comunicação não deve resumir-se a extrair atenção. A comunicação regenerativa privilegia as relações humanas e a relação com o nosso planeta.') }}
         </p>
         <p class="reveal mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-ink/70">
-            {{ __('Não se constrói um mundo regenerativo com comunicação extrativa. Recusamos a agressividade e a manipulação: menos mensagens, mais profundas; consentimento em vez de intrusão; criatividade humana à frente. O método tem de ser igual ao destino.') }}
+            {{ __('A comunicação é também uma parte integrante do processo de regeneração do nosso planeta. Uma comunicação regenerativa começa na transparência e no consentimento, recusa a agressividade e a extração, elimina a manipulação e cria mensagens mais profundas.') }}
         </p>
         <div class="mt-9">
             <x-ui.button :href="route('approach')" variant="ghost">{{ __('Ler o manifesto') }} →</x-ui.button>
