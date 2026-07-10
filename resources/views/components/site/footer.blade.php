@@ -40,6 +40,7 @@
                 <ul class="mt-4 space-y-2.5 text-sm text-cream/75">
                     <li><a href="{{ route('approach') }}" class="transition hover:text-cream">{{ __('Abordagem') }}</a></li>
                     <li><a href="{{ route('work') }}" class="transition hover:text-cream">{{ __('Projetos') }}</a></li>
+                    <li><a href="{{ route('blog.index') }}" class="transition hover:text-cream">{{ __('Jornal') }}</a></li>
                     <li><a href="{{ route('about') }}" class="transition hover:text-cream">{{ __('Sobre') }}</a></li>
                     <li><a href="{{ route('contact') }}" class="transition hover:text-cream">{{ __('Contacto') }}</a></li>
                     @if (Route::has('privacy'))

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\MagicLinkController;
@@ -11,6 +12,10 @@ Route::view('/abordagem', 'pages.approach')->name('approach');
 Route::view('/servicos', 'pages.services')->name('services');
 Route::view('/projetos', 'pages.work')->name('work');
 Route::view('/sobre', 'pages.about')->name('about');
+
+// Blog / journal.
+Route::get('/jornal', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/jornal/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/contacto', [ContactController::class, 'show'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'submit'])

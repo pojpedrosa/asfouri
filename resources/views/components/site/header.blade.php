@@ -3,6 +3,7 @@
         ['route' => 'approach', 'label' => __('Abordagem')],
         ['route' => 'services', 'label' => __('Serviços')],
         ['route' => 'work',     'label' => __('Projetos')],
+        ['route' => 'blog.index', 'label' => __('Jornal')],
         ['route' => 'about',    'label' => __('Sobre')],
     ];
     $locale = app()->getLocale();
