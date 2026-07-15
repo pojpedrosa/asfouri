@@ -70,10 +70,10 @@ class PostForm
                             ->imageResizeUpscale(false)
                             ->helperText('Pode carregar fotografias grandes (até 25 MB) — são reduzidas automaticamente para no máximo 2400×1600 px.')
                             ->columnSpanFull(),
-                        TextInput::make('cover_credit')
+                        RichEditor::make('cover_credit')
                             ->label('Créditos da fotografia')
-                            ->maxLength(180)
-                            ->helperText('Aparece por baixo da imagem no artigo. Ex.: "Foto de Ana Silva / Unsplash".')
+                            ->toolbarButtons(['bold', 'italic', 'link'])
+                            ->helperText('Aparece por baixo da imagem no artigo. Pode incluir links. Ex.: "Foto de Ana Silva / Unsplash".')
                             ->columnSpanFull(),
                         TextInput::make('slug')
                             ->label('Slug (URL)')

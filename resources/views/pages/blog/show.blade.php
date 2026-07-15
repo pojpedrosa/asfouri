@@ -15,8 +15,8 @@
         @if ($post->coverUrl())
             <figure class="mx-auto max-w-4xl px-5 sm:px-8">
                 <img src="{{ $post->coverUrl() }}" alt="" class="mt-10 aspect-[16/9] w-full rounded-3xl object-cover shadow-sm" />
-                @if ($post->cover_credit)
-                    <figcaption class="mt-2 text-right text-xs text-ink/50">{{ $post->cover_credit }}</figcaption>
+                @if (trim(strip_tags((string) $post->cover_credit)) !== '')
+                    <figcaption class="mt-2 text-right text-xs text-ink/50 [&_p]:m-0 [&_a]:underline [&_a]:decoration-ink/30 [&_a]:underline-offset-2 [&_a]:transition-colors [&_a:hover]:text-blue-500">{!! $post->cover_credit !!}</figcaption>
                 @endif
             </figure>
         @endif
