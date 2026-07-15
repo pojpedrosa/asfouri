@@ -13,9 +13,12 @@
         </x-site.page-hero>
 
         @if ($post->coverUrl())
-            <div class="mx-auto max-w-4xl px-5 sm:px-8">
+            <figure class="mx-auto max-w-4xl px-5 sm:px-8">
                 <img src="{{ $post->coverUrl() }}" alt="" class="mt-10 aspect-[16/9] w-full rounded-3xl object-cover shadow-sm" />
-            </div>
+                @if ($post->cover_credit)
+                    <figcaption class="mt-2 text-right text-xs text-ink/50">{{ $post->cover_credit }}</figcaption>
+                @endif
+            </figure>
         @endif
 
         <div class="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-20">

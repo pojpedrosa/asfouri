@@ -15,6 +15,7 @@ class Post extends Model
         'excerpt_pt', 'excerpt_en',
         'body_pt', 'body_en',
         'cover_path',
+        'cover_credit',
         'author_name',
         'published_at',
         'is_published',

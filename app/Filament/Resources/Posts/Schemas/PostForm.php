@@ -61,6 +61,19 @@ class PostForm
                             ->disk('public')
                             ->directory('posts')
                             ->imageEditor()
+                            // Accept large photos, but shrink them in the browser before
+                            // upload so we never store (or serve) an oversized file.
+                            ->maxSize(25 * 1024)
+                            ->imageResizeMode('contain')
+                            ->imageResizeTargetWidth('2400')
+                            ->imageResizeTargetHeight('1600')
+                            ->imageResizeUpscale(false)
+                            ->helperText('Pode carregar fotografias grandes (até 25 MB) — são reduzidas automaticamente para no máximo 2400×1600 px.')
+                            ->columnSpanFull(),
+                        TextInput::make('cover_credit')
+                            ->label('Créditos da fotografia')
+                            ->maxLength(180)
+                            ->helperText('Aparece por baixo da imagem no artigo. Ex.: "Foto de Ana Silva / Unsplash".')
                             ->columnSpanFull(),
                         TextInput::make('slug')
                             ->label('Slug (URL)')
