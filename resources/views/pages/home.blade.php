@@ -18,9 +18,17 @@
                 <p class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/80">
                     {{ __('A asfouri multiplica o que há de bom no mundo: amplificamos as ideias, ferramentas e projetos de quem o trabalha a regenerar com profundidade, colaboração e criatividade humana.') }}
                 </p>
-                <div class="mt-9 flex flex-wrap items-center gap-3">
-                    <x-ui.button :href="route('services')" size="lg">{{ __('Ver o que fazemos') }}</x-ui.button>
-                    <x-ui.button :href="route('approach')" variant="outline" size="lg">{{ __('A nossa abordagem') }}</x-ui.button>
+                <p class="mt-4 max-w-xl text-base font-medium text-ink/70">
+                    {{ __('Estratégia, narrativa, redes sociais, plataformas web, IA e design — numa só equipa.') }}
+                </p>
+                <div class="mt-8 flex flex-wrap items-center gap-3">
+                    <x-ui.button :href="route('contact')" size="lg">{{ __('Falar connosco') }}</x-ui.button>
+                    <x-ui.button :href="route('services')" variant="outline" size="lg">{{ __('Ver o que fazemos') }}</x-ui.button>
+                </div>
+                <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-ink/55">
+                    <span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>{{ __('Comunicação + tecnologia numa só equipa') }}</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-coral"></span>PT · EN</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span>{{ __('Resposta em dias úteis') }}</span>
                 </div>
             </div>
 
@@ -48,28 +56,62 @@
         </div>
     </section>
 
-    {{-- ─────────────────────────── Manifesto teaser ─────────────────────────── --}}
-    <section class="mx-auto max-w-5xl px-5 py-20 text-center sm:px-8 sm:py-28">
-        <x-ui.eyebrow class="justify-center">{{ __('O que é comunicação regenerativa') }}</x-ui.eyebrow>
-        <p class="reveal mx-auto mt-7 max-w-3xl font-display text-2xl font-medium leading-snug text-balance text-blue-500 sm:text-4xl">
-            {{ __('A comunicação não deve resumir-se a extrair atenção. A comunicação regenerativa privilegia as relações humanas e a relação com o nosso planeta.') }}
-        </p>
-        <p class="reveal mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-ink/70">
-            {{ __('A comunicação é também uma parte integrante do processo de regeneração do nosso planeta. Uma comunicação regenerativa começa na transparência e no consentimento, recusa a agressividade e a extração, elimina a manipulação e cria mensagens mais profundas.') }}
-        </p>
-        <div class="mt-9">
-            <x-ui.button :href="route('approach')" variant="ghost">{{ __('Ler o manifesto') }} →</x-ui.button>
+    {{-- ─────────────────────────── Who we serve ─────────────────────────── --}}
+    <section class="bg-cream-deep py-20 sm:py-28">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+            <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                <div class="relative">
+                    {{-- sun-circle motif with the bird --}}
+                    <div class="relative mb-10 hidden h-28 w-28 lg:block">
+                        <div class="absolute inset-0 rounded-full bg-sun"></div>
+                        <x-brand.mark class="absolute left-1/2 top-1/2 h-16 w-auto -translate-x-1/2 -translate-y-1/2 text-blue-500" />
+                    </div>
+                    <x-ui.eyebrow>{{ __('Para quem') }}</x-ui.eyebrow>
+                    <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
+                        {{ __('Quem semeia futuro') }}
+                    </h2>
+                    <p class="mt-5 max-w-md text-pretty leading-relaxed text-ink/70">
+                        {{ __('Somos parceiros de comunicação de universidades, ONG, redes e projetos europeus — e de empresas que querem comunicar de outra forma. Se está a fazer algo bom no mundo, ajudamos a torná-lo mais alto.') }}
+                    </p>
+                    <div class="mt-8">
+                        <x-ui.button :href="route('contact')">{{ __('Trabalhar connosco') }}</x-ui.button>
+                    </div>
+                </div>
+
+                @php
+                    $audiences = [
+                        __('Projetos europeus (Horizonte, Erasmus+, Interreg, LIFE…)'),
+                        __('Universidades e centros de investigação'),
+                        __('ONG e redes de impacto'),
+                        __('Educação, cultura e cidadania'),
+                        __('Agricultura regenerativa e permacultura'),
+                        __('Sustentabilidade e ambiente'),
+                        __('Cooperativas e economia social'),
+                        __('Empresas com propósito'),
+                    ];
+                @endphp
+                <ul class="grid gap-3 sm:grid-cols-2">
+                    @foreach ($audiences as $a)
+                        <li class="reveal flex items-start gap-3 rounded-2xl bg-paper px-5 py-4 ring-1 ring-blue-100/70 transition hover:ring-blue-200">
+                            <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500 text-cream">
+                                <x-ui.icon name="check" class="h-3.5 w-3.5" />
+                            </span>
+                            <span class="text-sm font-medium text-ink/85">{{ $a }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </section>
 
     {{-- ─────────────────────────── Services ─────────────────────────── --}}
-    <section class="bg-cream-deep py-20 sm:py-28">
+    <section class="py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-5 sm:px-8">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                 <div class="max-w-2xl">
                     <x-ui.eyebrow>{{ __('Serviços') }}</x-ui.eyebrow>
                     <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
-                        {{ __('Sete disciplinas, uma só raiz') }}
+                        {{ __('Comunicação e tecnologia, numa só raiz') }}
                     </h2>
                     <p class="mt-4 max-w-xl text-pretty text-ink/70">
                         {{ __('Do primeiro rascunho da estratégia ao código que sustenta a plataforma — cuidamos de toda a comunicação do seu projeto.') }}
@@ -122,47 +164,10 @@
         </div>
     </section>
 
-    {{-- ─────────────────────────── Principles (bold blue band) ─────────────────────────── --}}
-    <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-28">
-        {{-- geometric punctuation + a white bird --}}
-        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-            <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-400/40"></div>
-            <div class="absolute bottom-0 left-1/3 h-44 w-44 rounded-full bg-blue-700/50"></div>
-            <x-brand.mark class="absolute -right-2 bottom-6 h-44 w-auto text-cream/10" />
-        </div>
-
-        <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
-            <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-sun">
-                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-sun"></span>{{ __('Princípios') }}
-                </span>
-                <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-cream sm:text-5xl">
-                    {{ __('Cultivamos como quem cuida do solo') }}
-                </h2>
-            </div>
-
-            @php
-                $principles = [
-                    ['n' => '01', 'title' => __('Profundidade'),      'text' => __('Damos ênfase à profundidade das ligações, e não ao número de impressões. Trabalhamos uma comunicação com impacto, que fica na memória e permanece acessível.')],
-                    ['n' => '02', 'title' => __('Regeneração'),       'text' => __('Criamos modelos de comunicação centrados na longevidade e na restauração, moldados e adaptados pelas comunidades que alcançam e que os inspiram.')],
-                    ['n' => '03', 'title' => __('Centrado no humano'),'text' => __('Valorizamos e trabalhamos com artistas e criações originais, recusando ceder a um mundo que se achata na uniformidade da IA.')],
-                    ['n' => '04', 'title' => __('Consentimento'),     'text' => __('Gerimos a comunicação com permissão e escuta ativa das comunidades, parceiros e partes interessadas envolvidas.')],
-                    ['n' => '05', 'title' => __('Adaptação'),         'text' => __('As ferramentas e os formatos de comunicação adaptam-se a cada projeto e às comunidades e públicos envolvidos. Não assumimos os canais convencionais como os únicos e mais eficazes para amplificar.')],
-                    ['n' => '06', 'title' => __('Tecnologia'),        'text' => __('Usamos a tecnologia e a IA como ferramenta, com uma só pergunta no centro: isto serve as pessoas e o planeta? Se não servir, não entra.')],
-                ];
-            @endphp
-
-            <div class="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ($principles as $p)
-                    <div class="reveal border-t border-cream/25 pt-5">
-                        <span class="font-display text-2xl font-semibold text-sun">{{ $p['n'] }}</span>
-                        <h3 class="mt-3 font-display text-xl font-semibold text-cream">{{ $p['title'] }}</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-cream/75">{{ $p['text'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    {{-- ─────────────────────────── Mid-page CTA (intent peaks after services) ─────────────────────────── --}}
+    <div class="pb-4 pt-2 sm:pb-10">
+        <x-site.cta :eyebrow="__('Vamos conversar')" :heading="__('Curioso como isto se aplica ao seu projeto?')" :text="false" />
+    </div>
 
     {{-- ─────────────────────────── Process ─────────────────────────── --}}
     <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
@@ -198,50 +203,64 @@
         </div>
     </section>
 
-    {{-- ─────────────────────────── Who we serve ─────────────────────────── --}}
-    <section class="bg-cream-deep py-20 sm:py-28">
-        <div class="mx-auto max-w-7xl px-5 sm:px-8">
-            <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-                <div class="relative">
-                    {{-- sun-circle motif with the bird --}}
-                    <div class="relative mb-10 hidden h-28 w-28 lg:block">
-                        <div class="absolute inset-0 rounded-full bg-sun"></div>
-                        <x-brand.mark class="absolute left-1/2 top-1/2 h-16 w-auto -translate-x-1/2 -translate-y-1/2 text-blue-500" />
-                    </div>
-                    <x-ui.eyebrow>{{ __('Para quem') }}</x-ui.eyebrow>
-                    <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
-                        {{ __('Quem semeia futuro') }}
+    {{-- ─────────────────────────── Manifesto + Principles (bold blue band) ─────────────────────────── --}}
+    <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-28">
+        {{-- geometric punctuation + a white bird --}}
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-400/40"></div>
+            <div class="absolute bottom-0 left-1/3 h-44 w-44 rounded-full bg-blue-700/50"></div>
+            <x-brand.mark class="absolute -right-2 bottom-6 h-44 w-auto text-cream/10" />
+        </div>
+
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+            {{-- Manifesto intro --}}
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-sun">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-sun"></span>{{ __('O que é comunicação regenerativa') }}
+                </span>
+                <p class="reveal mt-6 font-display text-2xl font-medium leading-snug text-balance text-cream sm:text-4xl">
+                    {{ __('A comunicação não deve resumir-se a extrair atenção. A comunicação regenerativa privilegia as relações humanas e a relação com o nosso planeta.') }}
+                </p>
+                <p class="reveal mt-5 max-w-2xl text-pretty leading-relaxed text-cream/80">
+                    {{ __('A comunicação é também uma parte integrante do processo de regeneração do nosso planeta. Uma comunicação regenerativa começa na transparência e no consentimento, recusa a agressividade e a extração, elimina a manipulação e cria mensagens mais profundas.') }}
+                </p>
+            </div>
+
+            {{-- The six principles --}}
+            <div class="mt-16 border-t border-cream/20 pt-14">
+                <div class="max-w-2xl">
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-sun">
+                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-sun"></span>{{ __('Princípios') }}
+                    </span>
+                    <h2 class="mt-4 font-display text-3xl font-semibold tracking-tight text-balance text-cream sm:text-4xl">
+                        {{ __('Cultivamos como quem cuida do solo') }}
                     </h2>
-                    <p class="mt-5 max-w-md text-pretty leading-relaxed text-ink/70">
-                        {{ __('Somos parceiros de comunicação de universidades, ONG, redes e projetos europeus — e de empresas que querem comunicar de outra forma. Se está a fazer algo bom no mundo, ajudamos a torná-lo mais alto.') }}
-                    </p>
-                    <div class="mt-8">
-                        <x-ui.button :href="route('contact')">{{ __('Trabalhar connosco') }}</x-ui.button>
-                    </div>
                 </div>
 
                 @php
-                    $audiences = [
-                        __('Projetos europeus (Horizonte, Erasmus+, Interreg, LIFE…)'),
-                        __('Universidades e centros de investigação'),
-                        __('ONG e redes de impacto'),
-                        __('Educação, cultura e cidadania'),
-                        __('Agricultura regenerativa e permacultura'),
-                        __('Sustentabilidade e ambiente'),
-                        __('Cooperativas e economia social'),
-                        __('Empresas com propósito'),
+                    $principles = [
+                        ['n' => '01', 'title' => __('Profundidade'),      'text' => __('Damos ênfase à profundidade das ligações, e não ao número de impressões. Trabalhamos uma comunicação com impacto, que fica na memória e permanece acessível.')],
+                        ['n' => '02', 'title' => __('Regeneração'),       'text' => __('Criamos modelos de comunicação centrados na longevidade e na restauração, moldados e adaptados pelas comunidades que alcançam e que os inspiram.')],
+                        ['n' => '03', 'title' => __('Centrado no humano'),'text' => __('Valorizamos e trabalhamos com artistas e criações originais, recusando ceder a um mundo que se achata na uniformidade da IA.')],
+                        ['n' => '04', 'title' => __('Consentimento'),     'text' => __('Gerimos a comunicação com permissão e escuta ativa das comunidades, parceiros e partes interessadas envolvidas.')],
+                        ['n' => '05', 'title' => __('Adaptação'),         'text' => __('As ferramentas e os formatos de comunicação adaptam-se a cada projeto e às comunidades e públicos envolvidos. Não assumimos os canais convencionais como os únicos e mais eficazes para amplificar.')],
+                        ['n' => '06', 'title' => __('Tecnologia'),        'text' => __('Usamos a tecnologia e a IA como ferramenta, com uma só pergunta no centro: isto serve as pessoas e o planeta? Se não servir, não entra.')],
                     ];
                 @endphp
-                <ul class="grid gap-3 sm:grid-cols-2">
-                    @foreach ($audiences as $a)
-                        <li class="reveal flex items-start gap-3 rounded-2xl bg-paper px-5 py-4 ring-1 ring-blue-100/70 transition hover:ring-blue-200">
-                            <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500 text-cream">
-                                <x-ui.icon name="check" class="h-3.5 w-3.5" />
-                            </span>
-                            <span class="text-sm font-medium text-ink/85">{{ $a }}</span>
-                        </li>
+
+                <div class="mt-12 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($principles as $p)
+                        <div class="reveal border-t border-cream/25 pt-5">
+                            <span class="font-display text-2xl font-semibold text-sun">{{ $p['n'] }}</span>
+                            <h3 class="mt-3 font-display text-xl font-semibold text-cream">{{ $p['title'] }}</h3>
+                            <p class="mt-2 text-sm leading-relaxed text-cream/75">{{ $p['text'] }}</p>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
+
+                <div class="mt-12">
+                    <x-ui.button :href="route('approach')" variant="light">{{ __('Ler o manifesto') }} →</x-ui.button>
+                </div>
             </div>
         </div>
     </section>

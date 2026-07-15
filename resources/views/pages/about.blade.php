@@ -90,9 +90,8 @@
 
     {{-- How we work — bold blue band (the engine) --}}
     <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-24">
-        {{-- decorative sun + white sparrow --}}
+        {{-- decorative sun --}}
         <span class="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-blue-400/30" aria-hidden="true"></span>
-        <x-brand.mark class="animate-drift pointer-events-none absolute -right-4 bottom-2 h-40 w-auto text-cream/10 sm:h-56" />
 
         <div class="relative mx-auto max-w-5xl px-5 text-center sm:px-8">
             <x-brand.mark class="mx-auto h-12 w-auto text-sun" />

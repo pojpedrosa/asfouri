@@ -3,7 +3,7 @@
 <article class="reveal group flex flex-col overflow-hidden rounded-3xl border border-cream-deep bg-paper transition duration-300 hover:-translate-y-1 hover:shadow-xl">
     <a href="{{ route('blog.show', $post) }}" class="block" tabindex="-1" aria-hidden="true">
         @if ($post->coverUrl())
-            <img src="{{ $post->coverUrl() }}" alt="" class="aspect-[16/10] w-full object-cover" />
+            <img src="{{ $post->coverUrl() }}" alt="{{ $post->title() }}" loading="lazy" class="aspect-[16/10] w-full object-cover" />
         @else
             <div class="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-blue-500">
                 <span class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-sun/30" aria-hidden="true"></span>
@@ -14,7 +14,7 @@
     </a>
     <div class="flex flex-1 flex-col p-6">
         <p class="text-xs font-semibold uppercase tracking-[0.14em] text-blue-400">
-            {{ $post->published_at?->locale(app()->getLocale())->isoFormat('LL') }}
+            <time datetime="{{ $post->published_at?->toDateString() }}">{{ $post->published_at?->locale(app()->getLocale())->isoFormat('LL') }}</time>
             <span class="text-ink/30">·</span>
             {{ $post->readingMinutes() }} {{ __('min de leitura') }}
         </p>

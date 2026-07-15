@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\MagicLinkController;
 use App\Http\Controllers\MailAttachmentController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.home')->name('home');
@@ -15,7 +16,11 @@ Route::view('/sobre', 'pages.about')->name('about');
 
 // Blog / journal.
 Route::get('/jornal', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/jornal/feed', [SeoController::class, 'feed'])->name('blog.feed');
 Route::get('/jornal/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// SEO.
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
 
 Route::get('/contacto', [ContactController::class, 'show'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'submit'])
