@@ -203,6 +203,42 @@
         </div>
     </section>
 
+    {{-- ─────────────────────────── asfouri grants (funding finder) ─────────────────────────── --}}
+    <section class="mx-auto max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28">
+        <div class="reveal relative overflow-hidden rounded-[2rem] bg-cream-deep px-7 py-12 ring-1 ring-blue-100 sm:px-14 sm:py-16">
+            <div class="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-sun/40" aria-hidden="true"></div>
+            <x-brand.mark class="pointer-events-none absolute -bottom-8 right-6 h-40 w-auto text-blue-500/10" />
+            <div class="relative grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+                <div>
+                    <x-ui.eyebrow>{{ __('Novo · uma ferramenta asfouri') }}</x-ui.eyebrow>
+                    <h2 class="mt-5 font-display text-4xl font-semibold tracking-tight text-balance text-blue-500 sm:text-5xl">
+                        {{ __('Encontre o financiamento europeu para o seu projeto') }}
+                    </h2>
+                    <p class="mt-5 max-w-xl text-pretty leading-relaxed text-ink/70">
+                        {{ __('Criámos uma plataforma com IA que encontra os fundos europeus e nacionais a que a sua organização se pode candidatar — em minutos. Diga-nos o que faz e veja quantas oportunidades existem, o seu grau de compatibilidade e por onde começar. E, se quiser, ajudamos a escrever e submeter a candidatura.') }}
+                    </p>
+                    <div class="mt-8 flex flex-wrap items-center gap-4">
+                        <x-ui.button href="https://asfouri.agency" target="_blank" rel="noopener">{{ __('Explorar o asfouri grants') }}</x-ui.button>
+                        <span class="text-sm text-ink/55">{{ __('Pesquisa gratuita · asfouri.agency') }}</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach ([
+                        ['900+', __('fundos mapeados')],
+                        ['UE + PT', __('programas cobertos')],
+                        ['2 min', __('para ver os seus resultados')],
+                        ['IA', __('compatibilidade e elegibilidade')],
+                    ] as [$n, $label])
+                        <div class="rounded-2xl bg-paper p-5 text-center ring-1 ring-blue-100/70">
+                            <div class="font-display text-2xl font-bold text-blue-500">{{ $n }}</div>
+                            <div class="mt-1 text-xs leading-tight text-ink/60">{{ $label }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- ─────────────────────────── Manifesto + Principles (bold blue band) ─────────────────────────── --}}
     <section class="relative overflow-hidden bg-blue-500 py-20 text-cream sm:py-28">
         {{-- geometric punctuation + a white bird --}}
